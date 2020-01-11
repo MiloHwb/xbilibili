@@ -1,4 +1,6 @@
 class R {
+  /// ![](http://127.0.0.1:10086/images/avatar.jpg)
+  static final String imagesAvatar = 'images/avatar.jpg';
   /// ![](http://127.0.0.1:10086/images/bili_default_avatar.png)
   static final String imagesBiliDefaultAvatar = 'images/bili_default_avatar.png';
   /// ![](http://127.0.0.1:10086/images/me_tv_sign_in.png)

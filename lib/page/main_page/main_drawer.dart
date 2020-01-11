@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xbilibili/route/routes.dart';
 import 'package:xbilibili/utils/line_utils.dart';
 
 import '../../r.dart';
@@ -17,7 +18,7 @@ class MainDrawer extends StatelessWidget {
         child: Column(
           children: <Widget>[
             _topList(context),
-            _bottomRow(),
+            _bottomRow(context),
           ],
         ),
       ),
@@ -130,7 +131,7 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
-  Widget _bottomRow() {
+  Widget _bottomRow(context) {
     return Container(
       height: 50,
       decoration: BoxDecoration(
@@ -147,6 +148,7 @@ class MainDrawer extends StatelessWidget {
           InkWell(
             onTap: () {
 //              todo 跳设置
+              Navigator.of(context).pushNamed(RouteName.settingPage);
             },
             child: Row(
               children: <Widget>[

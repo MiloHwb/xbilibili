@@ -48,6 +48,7 @@ flutter:
   assets:
     # assets-generator-begin
     # images/*
+    - images/avatar.jpg
     - images/bili_default_avatar.png
     - images/me_tv_sign_in.png
     - images/me_tv_sign_out.png
