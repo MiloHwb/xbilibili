@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xbilibili/page/home_page.dart';
+import 'package:xbilibili/page/home_page/home_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
 
 Route<dynamic> generateRoutes(RouteSettings settings) {
