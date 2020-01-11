@@ -39,6 +39,6 @@ class _SplashPageState extends State<SplashPage> {
   FutureOr _jumpToHomePage() {
     print('_jumpToHomePage');
 
-    Navigator.pushNamedAndRemoveUntil(context, RouteName.homePage, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, RouteName.mainPage, (route) => false);
   }
 }
