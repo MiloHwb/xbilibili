@@ -16,7 +16,23 @@ class DynamicPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-//      elevation: 0,
+      elevation: 0,
+      title: Text('动态'),
+      centerTitle: true,
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(
+              IconData(0xe61e, fontFamily: 'Bilibili'),
+            ),
+            onPressed: () {
+              Scaffold.of(context).hideCurrentSnackBar();
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('请先登陆'),
+                ),
+              );
+            }),
+      ],
     );
   }
 }

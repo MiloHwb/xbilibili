@@ -15,8 +15,36 @@ class MallPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.indigo,
+    return AppBar(
+      elevation: 0,
+      title: Text('会员购'),
+      centerTitle: true,
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(
+              IconData(0xe606, fontFamily: 'Bilibili'),
+            ),
+            onPressed: () {
+              Scaffold.of(context).hideCurrentSnackBar();
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('请先登陆'),
+                ),
+              );
+            }),
+        IconButton(
+            icon: Icon(
+              IconData(0xe667, fontFamily: 'Bilibili'),
+            ),
+            onPressed: () {
+              Scaffold.of(context).hideCurrentSnackBar();
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('请先登陆'),
+                ),
+              );
+            })
+      ],
     );
   }
 }
