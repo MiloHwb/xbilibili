@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:xbilibili/page/about_page.dart';
 import 'package:xbilibili/page/login_page.dart';
 import 'package:xbilibili/page/main_page/main_page.dart';
+import 'package:xbilibili/page/search_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
 
@@ -18,6 +19,8 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => AboutPage());
     case RouteName.loginPage:
       return MaterialPageRoute(builder: (context) => LoginPage());
+    case RouteName.searchPage:
+      return CupertinoPageRoute(builder: (context) => SearchPage());
     default:
       return MaterialPageRoute(builder: (context) => SplashPage());
   }
@@ -38,4 +41,7 @@ class RouteName {
 
   //登录页
   static const loginPage = '/login';
+
+  //搜索页
+  static const searchPage = '/search';
 }

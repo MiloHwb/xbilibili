@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/icons/bilibili_icons.dart';
+import 'package:xbilibili/page/main_page/channel_page_app_bar.dart';
+import 'package:xbilibili/page/main_page/dynamic_page_app_bar.dart';
+import 'package:xbilibili/page/main_page/home_page_app_bar.dart';
+import 'package:xbilibili/page/main_page/mall_page_app_bar.dart';
 import 'package:xbilibili/providers/main_page_provider.dart';
 
 import 'channel_page.dart';
@@ -16,9 +20,12 @@ import 'mall_page.dart';
  * @ 描述         
  */
 class MainPage extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final appBars = [];
+  final appBars = [
+    HomePageAppBar(),
+    ChannelPageAppBar(),
+    DynamicPageAppBar(),
+    MallPageAppBar(),
+  ];
   final pages = [
     HomePage(),
     ChannelPage(),
@@ -50,10 +57,11 @@ class MainPage extends StatelessWidget {
     return Consumer<MainPageProvider>(builder: (context, value, child) {
       return WillPopScope(
         onWillPop: () {
-          return _checkDoubleClick(context, value.lastClick);
+          return _checkDoubleClick(context, value.scaffoldKey, value.lastClick);
         },
         child: Scaffold(
-          key: _scaffoldKey,
+          key: value.scaffoldKey,
+          appBar: appBars[value.currentIndex],
           drawer: MainDrawer(),
           body: IndexedStack(
             index: value.currentIndex,
@@ -75,9 +83,9 @@ class MainPage extends StatelessWidget {
     });
   }
 
-  Future<bool> _checkDoubleClick(context, DateTime lastClick) {
+  Future<bool> _checkDoubleClick(context, scaffoldKey, DateTime lastClick) {
     //如果当前抽屉打开，则关闭抽屉
-    if (_scaffoldKey.currentState.isDrawerOpen) {
+    if (scaffoldKey.currentState.isDrawerOpen) {
       Navigator.of(context).pop();
       return Future.value(false);
     }

@@ -17,7 +17,6 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (_) => new MainPageProvider()),
       ChangeNotifierProvider(create: (_) => new LoginPageProvider())
-//      ChangeNotifierProvider.value(value: HomePageProvider()),
     ],
     child: MyApp(),
   ));
