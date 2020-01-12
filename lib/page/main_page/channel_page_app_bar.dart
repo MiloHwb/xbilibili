@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xbilibili/route/routes.dart';
 
 /*
  * @ 创建者       milo
@@ -15,8 +16,31 @@ class ChannelPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
+    return AppBar(
+      elevation: 0,
+      title: Text('频道'),
+      centerTitle: true,
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(
+              IconData(0xe672, fontFamily: 'Bilibili'),
+            ),
+            onPressed: () {
+              Scaffold.of(context).hideCurrentSnackBar();
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('下载暂未开放'),
+                ),
+              );
+            }),
+        IconButton(
+            icon: Icon(
+              IconData(0xe669, fontFamily: 'Bilibili'),
+            ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(RouteName.searchPage);
+            })
+      ],
     );
   }
 }

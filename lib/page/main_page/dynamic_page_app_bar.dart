@@ -15,8 +15,8 @@ class DynamicPageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return AppBar(
+//      elevation: 0,
     );
   }
 }
