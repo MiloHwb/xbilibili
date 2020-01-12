@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/providers/main_page_provider.dart';
 
+import 'providers/login_page_provider.dart';
 import 'route/routes.dart';
 
 void main() {
@@ -14,7 +15,8 @@ void main() {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => new MainPageProvider())
+      ChangeNotifierProvider(create: (_) => new MainPageProvider()),
+      ChangeNotifierProvider(create: (_) => new LoginPageProvider())
 //      ChangeNotifierProvider.value(value: HomePageProvider()),
     ],
     child: MyApp(),

@@ -50,6 +50,8 @@ flutter:
     # images/*
     - images/avatar.jpg
     - images/bili_default_avatar.png
+    - images/login_logo_account.png
+    - images/login_logo_password.png
     - images/me_tv_sign_in.png
     - images/me_tv_sign_out.png
     - images/splashpage.jpg

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xbilibili/page/about_page.dart';
+import 'package:xbilibili/page/login_page.dart';
 import 'package:xbilibili/page/main_page/main_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
@@ -15,14 +16,26 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
       return CupertinoPageRoute(builder: (context) => SettingPage());
     case RouteName.aboutPage:
       return MaterialPageRoute(builder: (context) => AboutPage());
+    case RouteName.loginPage:
+      return MaterialPageRoute(builder: (context) => LoginPage());
     default:
       return MaterialPageRoute(builder: (context) => SplashPage());
   }
 }
 
 class RouteName {
+  //闪屏页
   static const splashPage = '/';
+
+  //主页
   static const mainPage = '/main';
+
+  //设置页
   static const settingPage = '/setting';
+
+  //关于页
   static const aboutPage = '/about';
+
+  //登录页
+  static const loginPage = '/login';
 }

@@ -98,7 +98,7 @@ class MainDrawer extends StatelessWidget {
       ),
       currentAccountPicture: InkWell(
         onTap: () {
-          //              todo 跳登录
+          Navigator.of(context).pushNamed(RouteName.loginPage);
         },
         child: CircleAvatar(
           backgroundImage: AssetImage(R.imagesBiliDefaultAvatar),

@@ -3,6 +3,10 @@ class R {
   static final String imagesAvatar = 'images/avatar.jpg';
   /// ![](http://127.0.0.1:10086/images/bili_default_avatar.png)
   static final String imagesBiliDefaultAvatar = 'images/bili_default_avatar.png';
+  /// ![](http://127.0.0.1:10086/images/login_logo_account.png)
+  static final String imagesLoginLogoAccount = 'images/login_logo_account.png';
+  /// ![](http://127.0.0.1:10086/images/login_logo_password.png)
+  static final String imagesLoginLogoPassword = 'images/login_logo_password.png';
   /// ![](http://127.0.0.1:10086/images/me_tv_sign_in.png)
   static final String imagesMeTvSignIn = 'images/me_tv_sign_in.png';
   /// ![](http://127.0.0.1:10086/images/me_tv_sign_out.png)
