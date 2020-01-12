@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xbilibili/api/http_method.dart';
 
 /*
  * @ 创建者       milo
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    HttpMethod.getChannelList();
     return Container(child: Text('频道'),);
   }
 }
