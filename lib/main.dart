@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:xbilibili/api/http_method.dart';
 import 'package:xbilibili/providers/main_page_provider.dart';
 
+import 'providers/channel_page_provider.dart';
 import 'providers/login_page_provider.dart';
 import 'route/routes.dart';
 
@@ -19,7 +20,8 @@ void main() {
     runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => new MainPageProvider()),
-        ChangeNotifierProvider(create: (_) => new LoginPageProvider())
+        ChangeNotifierProvider(create: (_) => new LoginPageProvider()),
+        ChangeNotifierProvider(create: (_) => new ChannelPageProvider()),
       ],
       child: MyApp(),
     ));
