@@ -9,7 +9,17 @@ import 'package:xbilibili/api/http_method.dart';
 class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    HttpMethod.getChannelList();
-    return Container(child: Text('频道'),);
+    return Container(
+      child: Center(
+        child: InkWell(
+          onTap: ()async {
+          var channelListModel = await  HttpMethod.getChannelList();
+          print(channelListModel.data.region.length);
+
+          },
+          child: Text('频道'),
+        ),
+      ),
+    );
   }
 }
