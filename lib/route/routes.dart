@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:xbilibili/page/about_page.dart';
 import 'package:xbilibili/page/login_page.dart';
 import 'package:xbilibili/page/main_page/main_page.dart';
-import 'package:xbilibili/page/search_page.dart';
+import 'package:xbilibili/page/search_page/search_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
 
