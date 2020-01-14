@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'everyone_search.dart';
 import 'search_bar.dart';
 
 /*
@@ -12,6 +13,11 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SearchBar(),
+      body: ListView(
+        children: <Widget>[
+          EveryoneSearch()
+        ],
+      ),
     );
   }
 }

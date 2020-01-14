@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:xbilibili/entity/channel_list_model.dart';
+import 'package:xbilibili/entity/search_hot_model.dart';
 
 import 'http_config.dart';
 
@@ -38,6 +39,23 @@ class HttpMethod {
 
         var channelListModel = ChannelListModel.fromJson(responseStr);
         return channelListModel;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static Future<SearchHotModel> getSearchHot() async {
+    try {
+      var response = await dio.get(Url.searchHotUrl);
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+
+        var searchHotModel = SearchHotModel.fromJson(responseStr);
+        return searchHotModel;
       } else {
         throw Exception('接口异常');
       }
