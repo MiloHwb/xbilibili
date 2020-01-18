@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:xbilibili/providers/search_page_provider.dart';
 
 /*
  * @ 创建者       milo
@@ -43,6 +45,10 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
                   autofocus: true,
                   maxLines: 1,
                   textInputAction: TextInputAction.search,
+                  onSubmitted: (text){
+                    Provider.of<SearchPageProvider>(context,listen: false).insertHistoryData(text);
+                    //todo 搜索
+                  },
                 ),
               ),
             ),

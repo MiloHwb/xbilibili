@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'everyone_search.dart';
 import 'search_bar.dart';
+import 'search_history.dart';
 
 /*
  * @ 创建者       milo
@@ -15,7 +16,8 @@ class SearchPage extends StatelessWidget {
       appBar: SearchBar(),
       body: ListView(
         children: <Widget>[
-          EveryoneSearch()
+          EveryoneSearch(),
+          SearchHistory(),
         ],
       ),
     );
