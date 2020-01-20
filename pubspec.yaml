@@ -29,6 +29,7 @@ dependencies:
   dio: ^3.0.8
   json_annotation: ^3.0.1
   shared_preferences: ^0.5.6
+  pull_to_refresh: ^1.5.8
 
 dev_dependencies:
   flutter_test:
