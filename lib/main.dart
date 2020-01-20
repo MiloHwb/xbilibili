@@ -6,6 +6,7 @@ import 'package:xbilibili/providers/main_page_provider.dart';
 
 import 'providers/channel_page_provider.dart';
 import 'providers/login_page_provider.dart';
+import 'providers/mall_page_privider.dart';
 import 'providers/search_page_provider.dart';
 import 'route/routes.dart';
 
@@ -24,6 +25,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => new LoginPageProvider()),
         ChangeNotifierProvider(create: (_) => new ChannelPageProvider()),
         ChangeNotifierProvider(create: (_) => new SearchPageProvider()),
+        ChangeNotifierProvider(create: (_) => new MallPageProvider()),
       ],
       child: MyApp(),
     ));

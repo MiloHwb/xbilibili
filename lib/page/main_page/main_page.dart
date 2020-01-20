@@ -5,14 +5,14 @@ import 'package:xbilibili/icons/bilibili_icons.dart';
 import 'package:xbilibili/page/main_page/channel_page_app_bar.dart';
 import 'package:xbilibili/page/main_page/dynamic_page_app_bar.dart';
 import 'package:xbilibili/page/main_page/home_page_app_bar.dart';
-import 'package:xbilibili/page/main_page/mall_page_app_bar.dart';
+import 'package:xbilibili/page/main_page/mall_page/mall_page_app_bar.dart';
 import 'package:xbilibili/providers/main_page_provider.dart';
 
 import 'channel_page.dart';
 import 'dynamic_page.dart';
 import 'home_page.dart';
 import 'main_drawer.dart';
-import 'mall_page.dart';
+import 'mall_page/mall_page.dart';
 
 /*
  * @ 创建者       milo
