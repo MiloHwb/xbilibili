@@ -94,7 +94,7 @@ class MallPage extends StatelessWidget {
   }
 
   getMallList(context, {bool isAppend = false}) async {
-    await Provider.of<MallPageProvider>(context, listen: false).getMallList(context);
+    await Provider.of<MallPageProvider>(context, listen: false).getMallList(context,isAppend: isAppend);
     _controller.refreshCompleted();
   }
 }
