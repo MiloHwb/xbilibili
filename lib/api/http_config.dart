@@ -7,4 +7,8 @@ class Url {
 
   //获取获取会员购列表
   static const mallUrl = 'https://mall.bilibili.com/mall-c/home/index/v2?mVersion=17';
+
+  //直播
+  static const liveUrl =
+      'https://api.live.bilibili.com/room/v1/AppIndex/getAllList?device=android&platform=android&scale=xhdpi';
 }
