@@ -49,15 +49,13 @@ class MallPage extends StatelessWidget {
     "http://i2.hdslb.com/bfs/openplatform/201905/12421557129720654.jpeg",
   ];
 
-  final RefreshController _controller = RefreshController();
+  final RefreshController _controller = RefreshController(initialRefresh: true);
 
   @override
   Widget build(BuildContext context) {
-    getMallList(context);
     return SmartRefresher(
-      controller: _controller,
       enablePullUp: true,
-      enablePullDown: true,
+      controller: _controller,
       footer: CustomFooter(
         builder: (context, LoadStatus mode) {
           Widget body;
@@ -75,9 +73,11 @@ class MallPage extends StatelessWidget {
         },
       ),
       onLoading: () {
+        print('onLoading');
         getMallList(context, isAppend: true);
       },
       onRefresh: () {
+        print('onRefresh');
         getMallList(context);
       },
       child: ListView(
@@ -94,7 +94,12 @@ class MallPage extends StatelessWidget {
   }
 
   getMallList(context, {bool isAppend = false}) async {
-    await Provider.of<MallPageProvider>(context, listen: false).getMallList(context,isAppend: isAppend);
-    _controller.refreshCompleted();
+    await Provider.of<MallPageProvider>(context, listen: false)
+        .getMallList(context, isAppend: isAppend);
+    if (isAppend) {
+      _controller.loadComplete();
+    } else {
+      _controller.refreshCompleted();
+    }
   }
 }

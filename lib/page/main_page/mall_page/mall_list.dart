@@ -21,19 +21,18 @@ class MallList extends StatelessWidget {
   }
 
   _buildMallList(context, List<ListModel> mallList) {
-    return Container(
-      child: GridView.count(
-        childAspectRatio: 0.6,
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 5,
-        padding: EdgeInsets.all(10),
-        children: mallList.map((mall) {
-          return _buildMallItem(context, mall);
-        }).toList(),
-      ),
+    return GridView.count(
+      controller: ScrollController(),
+      childAspectRatio: 0.6,
+      physics:  ScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 2,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 5,
+      padding: EdgeInsets.all(10),
+      children: mallList.map((mall) {
+        return _buildMallItem(context, mall);
+      }).toList(),
     );
   }
 
