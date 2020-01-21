@@ -10,7 +10,7 @@ import 'package:xbilibili/providers/main_page_provider.dart';
 
 import 'channel_page.dart';
 import 'dynamic_page.dart';
-import 'home_page.dart';
+import 'home_page/home_page.dart';
 import 'main_drawer.dart';
 import 'mall_page/mall_page.dart';
 
