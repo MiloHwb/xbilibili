@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:xbilibili/entity/live_entity.dart';
-import 'package:xbilibili/icons/bilibili_icons.dart';
 import 'package:xbilibili/page/main_page/home_page/live_page/partitions.dart';
 import 'package:xbilibili/providers/live_page_provider.dart';
 import 'package:xbilibili/route/routes.dart';
@@ -48,13 +44,13 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
     '全部标签',
   ];
 
-  final controller = RefreshController(initialRefresh: true);
+//  final controller = RefreshController(initialRefresh: true);
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    return Scaffold(
+    /* return Scaffold(
       floatingActionButton: _buildFloatingActionButton(context),
       body: SmartRefresher(
         controller: controller,
@@ -74,12 +70,54 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
           },
         ),
       ),
+    );*/
+    /* RefreshIndicator(L
+      color: Theme.of(context).primaryColor,
+      onRefresh: () {
+        return _getLiveData(context);
+      },
+      child: Consumer<LivePageProvider>(
+        builder: (context, value, child) {
+          Widget child;
+          if (value.data == null) {
+            child = Container();
+          } else {
+            child = _buildListView(context, value.data);
+          }
+          return child;
+        },
+      ),
+    );*/
+    return Scaffold(
+      floatingActionButton: _buildFloatingActionButton(context),
+      body: FutureBuilder(
+        future: _getLiveData(context),
+        builder: (BuildContext context, AsyncSnapshot<Null> snapshot) {
+          return RefreshIndicator(
+            color: Theme.of(context).primaryColor,
+            onRefresh: () {
+              return _getLiveData(context);
+            },
+            child: Consumer<LivePageProvider>(
+              builder: (context, value, child) {
+                Widget child;
+                if (value.data == null) {
+                  child = Container();
+                } else {
+                  child = _buildListView(context, value.data);
+                }
+                return child;
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 
   Widget _buildListView(BuildContext context, LiveData data) {
     return ListView(
-      physics: BouncingScrollPhysics(),
+      physics: ClampingScrollPhysics(),
       children: <Widget>[
         _buildBanner(data.banner),
         Cards(cardPics: cardPics, cardNames: cardNames),
@@ -103,7 +141,7 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
               onTap: () {},
               child: Image.network(
                 banner[index].pic,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
               ),
             );
           },
@@ -112,9 +150,11 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
     );
   }
 
-  _getLiveData(context) async {
+  Future<Null> _getLiveData(context) async {
+    print('获取直播数据');
+
     await Provider.of<LivePageProvider>(context, listen: false).getLiveData();
-    controller.refreshCompleted();
+//    controller.refreshCompleted();
   }
 
   //构建悬浮按钮
@@ -123,9 +163,7 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
       onPressed: () {
         Navigator.of(context).pushNamed(RouteName.loginPage);
       },
-      backgroundColor: Theme
-          .of(context)
-          .primaryColor,
+      backgroundColor: Theme.of(context).primaryColor,
       child: Container(
         padding: EdgeInsets.all(5),
         child: Text(

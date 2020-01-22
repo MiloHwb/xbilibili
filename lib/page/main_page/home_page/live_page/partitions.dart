@@ -57,7 +57,10 @@ class Partitions extends StatelessWidget {
               children: <Widget>[
                 ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  child: Image.network(live.userCover),
+                  child: Image.network(
+                    live.userCover + '@320w_200h',
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Positioned(
                   bottom: 5,
