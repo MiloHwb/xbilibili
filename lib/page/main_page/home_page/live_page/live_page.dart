@@ -1,10 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:xbilibili/entity/live_entity.dart';
+import 'package:xbilibili/icons/bilibili_icons.dart';
+import 'package:xbilibili/page/main_page/home_page/live_page/partitions.dart';
 import 'package:xbilibili/providers/live_page_provider.dart';
 import 'package:xbilibili/route/routes.dart';
+
+import 'cards.dart';
 
 /*
  * @ 创建者       milohuang
@@ -60,11 +66,7 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
           builder: (context, value, child) {
             Widget child;
             if (value.data == null) {
-              child = Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Theme.of(context).primaryColor,
-                ),
-              );
+              child = Container();
             } else {
               child = _buildListView(context, value.data);
             }
@@ -80,41 +82,9 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
       physics: BouncingScrollPhysics(),
       children: <Widget>[
         _buildBanner(data.banner),
-        _buildCards(),
+        Cards(cardPics: cardPics, cardNames: cardNames),
+        Partitions(data.partitions),
       ],
-    );
-  }
-
-  _buildCards() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colors.grey[300], width: 1),
-        ),
-      ),
-      padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-      child: GridView.count(
-        physics: NeverScrollableScrollPhysics(),
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 0.75,
-        crossAxisCount: 5,
-        shrinkWrap: true,
-        children: cardPics.asMap().keys.map((index) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Image.network(cardPics[index]),
-              Text(
-                cardNames[index],
-                style: TextStyle(fontSize: 12),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          );
-        }).toList(),
-      ),
     );
   }
 
@@ -153,7 +123,9 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
       onPressed: () {
         Navigator.of(context).pushNamed(RouteName.loginPage);
       },
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme
+          .of(context)
+          .primaryColor,
       child: Container(
         padding: EdgeInsets.all(5),
         child: Text(
