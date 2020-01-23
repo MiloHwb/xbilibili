@@ -8,6 +8,7 @@ import 'providers/live_page_provider.dart';
 import 'providers/login_page_provider.dart';
 import 'providers/main_page_provider.dart';
 import 'providers/mall_page_privider.dart';
+import 'providers/recommend_page_provider.dart';
 import 'providers/search_page_provider.dart';
 import 'route/routes.dart';
 
@@ -28,6 +29,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => new SearchPageProvider()),
         ChangeNotifierProvider(create: (_) => new MallPageProvider()),
         ChangeNotifierProvider(create: (_) => new LivePageProvider()),
+        ChangeNotifierProvider(create: (_) => new RecommendPageProvider()),
       ],
       child: MyApp(),
     ));

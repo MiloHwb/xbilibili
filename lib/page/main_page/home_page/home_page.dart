@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabs.length,
-      initialIndex: 0,
+      initialIndex: 1,
       child: Scaffold(
         appBar: TabBar(
           isScrollable: true,

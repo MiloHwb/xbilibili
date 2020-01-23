@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:xbilibili/entity/channel_list_model.dart';
 import 'package:xbilibili/entity/live_entity.dart';
 import 'package:xbilibili/entity/mall_list_model.dart';
+import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/entity/search_hot_model.dart';
 import 'package:xbilibili/generated/json/base/json_convert_content.dart';
 
@@ -92,6 +93,22 @@ class HttpMethod {
         var responseStr = response.data;
         var liveEntity = JsonConvert.fromJsonAsT<LiveEntity>(responseStr);
         return liveEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static Future<RecommendEntity> getRecommendList() async {
+    try {
+      var response = await dio.get(Url.recommendUrl);
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+        var recommendEntity = JsonConvert.fromJsonAsT<RecommendEntity>(responseStr);
+        return recommendEntity;
       } else {
         throw Exception('接口异常');
       }
