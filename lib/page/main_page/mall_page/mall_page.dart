@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart' ;
 import 'package:xbilibili/providers/mall_page_privider.dart';
 
 import 'mall_banner.dart';
@@ -55,7 +55,9 @@ class MallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SmartRefresher(
       enablePullUp: true,
+      enablePullDown: true,
       controller: _controller,
+      header: MaterialClassicHeader(),
       footer: CustomFooter(
         builder: (context, LoadStatus mode) {
           Widget body;

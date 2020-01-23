@@ -10,14 +10,20 @@ import 'package:xbilibili/providers/recommend_page_provider.dart';
  * @ 创建时间     2020/1/21 15:40
  * @ 描述         
  */
-class RecommendPage extends StatelessWidget {
+
+class RecommendPage extends StatefulWidget {
+  @override
+  _RecommendPageState createState() => _RecommendPageState();
+}
+
+class _RecommendPageState extends State<RecommendPage> with AutomaticKeepAliveClientMixin {
   final controller = RefreshController(initialRefresh: true);
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SmartRefresher(
       controller: controller,
-      physics: ScrollPhysics(),
       onRefresh: () {
         getRecommendList(context, isRefresh: true);
       },
@@ -26,6 +32,7 @@ class RecommendPage extends StatelessWidget {
       },
       enablePullDown: true,
       enablePullUp: true,
+      header: MaterialClassicHeader(),
       footer: CustomFooter(
         builder: (context, LoadStatus mode) {
           Widget body;
@@ -87,8 +94,6 @@ class RecommendPage extends StatelessWidget {
   }
 
   getRecommendList(context, {bool isRefresh = false}) async {
-    print('获取推荐列表 isRefresh = $isRefresh');
-
     await Provider.of<RecommendPageProvider>(context, listen: false)
         .getRecommendData(isRefresh: isRefresh);
     if (isRefresh) {
@@ -97,4 +102,7 @@ class RecommendPage extends StatelessWidget {
       controller.loadComplete();
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

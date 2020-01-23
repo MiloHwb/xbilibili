@@ -15,6 +15,7 @@ class ChannelPage extends StatelessWidget {
   Widget build(BuildContext context) {
     getChannelList(context);
     return RefreshIndicator(
+      color: Theme.of(context).primaryColor,
       onRefresh: (){
         return getChannelList(context);
       },
