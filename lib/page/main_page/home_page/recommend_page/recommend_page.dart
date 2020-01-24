@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/providers/recommend_page_provider.dart';
+import 'recommend_item.dart';
 
 /*
  * @ 创建者       milohuang
@@ -62,9 +63,9 @@ class _RecommendPageState extends State<RecommendPage> with AutomaticKeepAliveCl
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              childAspectRatio: 0.8,
+              childAspectRatio: 0.9,
               children: value.list.map((RecommendData data) {
-                return _buildRecommendItem(context, data);
+                return RecommendItem(data);
               }).toList(),
             ),
           );
@@ -72,24 +73,6 @@ class _RecommendPageState extends State<RecommendPage> with AutomaticKeepAliveCl
 
         return child;
       }),
-    );
-  }
-
-  Widget _buildRecommendItem(BuildContext context, RecommendData data) {
-    return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(5)),
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Image.network(
-                data.cover + "@320w_200h",
-                fit: BoxFit.fitHeight,
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 
