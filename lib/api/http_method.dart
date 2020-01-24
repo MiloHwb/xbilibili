@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:xbilibili/entity/channel_list_model.dart';
+import 'package:xbilibili/entity/hot_entity.dart';
 import 'package:xbilibili/entity/live_entity.dart';
 import 'package:xbilibili/entity/mall_list_model.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
@@ -26,6 +27,7 @@ init() {
 }
 
 class HttpMethod {
+  //获取频道列表
   static Future<ChannelListModel> getChannelList() async {
     try {
       Response response = await dio.get(Url.channelUrl, queryParameters: {
@@ -52,6 +54,7 @@ class HttpMethod {
     }
   }
 
+  //获取搜索热门
   static Future<SearchHotModel> getSearchHot() async {
     try {
       var response = await dio.get(Url.searchHotUrl);
@@ -69,6 +72,7 @@ class HttpMethod {
     }
   }
 
+  //会员购列表
   static Future<MallListModel> getMallList() async {
     try {
       var response = await dio.get(Url.mallUrl);
@@ -86,6 +90,7 @@ class HttpMethod {
     }
   }
 
+  //获取直播列表
   static Future<LiveEntity> getLiveList() async {
     try {
       var response = await dio.get(Url.liveUrl);
@@ -102,6 +107,7 @@ class HttpMethod {
     }
   }
 
+  //获取推荐列表
   static Future<RecommendEntity> getRecommendList() async {
     try {
       var response = await dio.get(Url.recommendUrl);
@@ -109,6 +115,27 @@ class HttpMethod {
         var responseStr = response.data;
         var recommendEntity = JsonConvert.fromJsonAsT<RecommendEntity>(responseStr);
         return recommendEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  //获取热门列表
+  static Future<HotEntity> getHotList({int idx = 0}) async {
+    try {
+      var url = Url.hotUrl;
+      if (idx != null) {
+        url = url + '&idx=$idx';
+      }
+      var response = await dio.get(url);
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+        var hotEntity = JsonConvert.fromJsonAsT<HotEntity>(responseStr);
+        return hotEntity;
       } else {
         throw Exception('接口异常');
       }

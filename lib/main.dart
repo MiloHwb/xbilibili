@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/api/http_method.dart';
+import 'package:xbilibili/providers/hot_page_provider.dart';
 
 import 'providers/channel_page_provider.dart';
 import 'providers/live_page_provider.dart';
@@ -30,6 +31,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => new MallPageProvider()),
         ChangeNotifierProvider(create: (_) => new LivePageProvider()),
         ChangeNotifierProvider(create: (_) => new RecommendPageProvider()),
+        ChangeNotifierProvider(create: (_) => new HotPageProvider()),
       ],
       child: MyApp(),
     ));

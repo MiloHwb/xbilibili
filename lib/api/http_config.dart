@@ -15,4 +15,8 @@ class Url {
   //推荐
   static const recommendUrl =
       'https://app.bilibili.com/x/feed/index?appkey=1d8b6e7d45233436&build=508000&login_event=0&mobi_app=android';
+
+  //热门
+  static const hotUrl =
+      'https://app.bilibili.com/x/v2/show/popular/index?build=5470400&mobi_app=android';
 }
