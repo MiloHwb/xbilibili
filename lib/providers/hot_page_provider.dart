@@ -13,7 +13,9 @@ class HotPageProvider with ChangeNotifier {
       idx = 0;
     }
     var hotEntity = await HttpMethod.getHotList(idx: idx);
-    topItems = hotEntity.config.topItems;
+    if (isRefresh) {
+      topItems = hotEntity.config.topItems;
+    }
 
     data.addAll(hotEntity.data);
     idx++;

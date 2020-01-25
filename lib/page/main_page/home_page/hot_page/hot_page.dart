@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:xbilibili/entity/hot_entity.dart';
 import 'package:xbilibili/providers/hot_page_provider.dart';
 
 /*
@@ -58,11 +59,41 @@ class HotPage extends StatelessWidget {
 
   Widget _buildListView(HotPageProvider value) {
     return Container(
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
+        physics: ClampingScrollPhysics(),
         children: <Widget>[
-          Text(value.topItems.length.toString()),
+          _buildTopList(value.topItems),
           Text(value.data.length.toString()),
         ],
+      ),
+    );
+  }
+
+  //构建顶部列表
+  Widget _buildTopList(List<HotConfigTopItem> topItems) {
+    return Container(
+      height: 80,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: topItems.length,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+            child: Column(
+              children: <Widget>[
+                Image.network(
+                  topItems[index].icon,
+                  width: 45,
+                  height: 45,
+                ),
+                Container(
+                  child: Text(topItems[index].title,style: TextStyle(color: Colors.grey,fontSize: 12),),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
