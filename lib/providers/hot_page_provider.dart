@@ -7,7 +7,7 @@ class HotPageProvider with ChangeNotifier {
   List<HotData> data = [];
   int idx = 0;
 
-  getHotList({bool isRefresh = false}) async {
+  getHotList({bool isRefresh : false}) async {
     if (isRefresh) {
       data.clear();
       idx = 0;
@@ -18,7 +18,7 @@ class HotPageProvider with ChangeNotifier {
     }
 
     data.addAll(hotEntity.data);
-    idx++;
+    idx+=10;
     notifyListeners();
   }
 }

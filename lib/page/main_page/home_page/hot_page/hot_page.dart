@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:xbilibili/entity/hot_entity.dart';
+import 'package:xbilibili/page/main_page/home_page/hot_page/av_hot.dart';
+import 'package:xbilibili/page/main_page/home_page/hot_page/mid_hot.dart';
 import 'package:xbilibili/providers/hot_page_provider.dart';
 
 /*
@@ -61,12 +63,39 @@ class HotPage extends StatelessWidget {
     return Container(
       child: ListView(
         shrinkWrap: true,
+        controller: ScrollController(),
         physics: ClampingScrollPhysics(),
         children: <Widget>[
           _buildTopList(value.topItems),
-          Text(value.data.length.toString()),
+          _buildHotList(value.data),
+//          Text(value.data.length.toString()),
         ],
       ),
+    );
+  }
+
+  //构建热门列表
+  Widget _buildHotList(List<HotData> data) {
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        Widget view;
+        switch (data[index].goto) {
+          case 'av':
+            view = AvHot(data[index]);
+            break;
+          case 'mid':
+            view = MidHot(data[index]);
+            break;
+          default:
+            view = Container();
+            break;
+        }
+
+        return view;
+      },
     );
   }
 
@@ -79,7 +108,7 @@ class HotPage extends StatelessWidget {
         itemCount: topItems.length,
         itemBuilder: (context, index) {
           return Container(
-            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Column(
               children: <Widget>[
                 Image.network(
@@ -88,7 +117,13 @@ class HotPage extends StatelessWidget {
                   height: 45,
                 ),
                 Container(
-                  child: Text(topItems[index].title,style: TextStyle(color: Colors.grey,fontSize: 12),),
+                  child: Text(
+                    topItems[index].title,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -98,13 +133,15 @@ class HotPage extends StatelessWidget {
     );
   }
 
-  void getHotList(BuildContext context, {bool isRefresh}) async {
+  void getHotList(BuildContext context, {bool isRefresh: false}) async {
+    print('获取热门列表');
+
     var provider = Provider.of<HotPageProvider>(context, listen: false);
     await provider.getHotList(isRefresh: isRefresh);
     if (isRefresh) {
       _refreshController.refreshCompleted();
     } else {
-      if (provider.idx >= 10) {
+      if (provider.idx >= 100) {
         _refreshController.loadNoData();
       } else {
         _refreshController.loadComplete();
