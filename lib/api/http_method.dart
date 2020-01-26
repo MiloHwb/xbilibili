@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:xbilibili/entity/channel_list_model.dart';
 import 'package:xbilibili/entity/hot_entity.dart';
 import 'package:xbilibili/entity/live_entity.dart';
@@ -134,6 +135,8 @@ class HttpMethod {
       var response = await dio.get(url);
       if (response.statusCode == 200) {
         var responseStr = response.data;
+//        printWrapped(responseStr.toString());
+
         var hotEntity = JsonConvert.fromJsonAsT<HotEntity>(responseStr);
         return hotEntity;
       } else {
@@ -143,5 +146,10 @@ class HttpMethod {
       print(e);
       throw e;
     }
+  }
+
+  static void printWrapped(String text) {
+    final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
+    pattern.allMatches(text).forEach((match) => print(match.group(0)));
   }
 }
