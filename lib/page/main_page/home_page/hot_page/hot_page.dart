@@ -68,7 +68,6 @@ class HotPage extends StatelessWidget {
         children: <Widget>[
           _buildTopList(value.topItems),
           _buildHotList(value.data),
-//          Text(value.data.length.toString()),
         ],
       ),
     );
