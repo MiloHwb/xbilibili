@@ -1,53 +1,46 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
-import 'package:xbilibili/entity/bangumi_model.dart';
-import 'package:xbilibili/providers/bangumi_page_provider.dart';
-import 'package:xbilibili/route/routes.dart';
-
-import '../../../r.dart';
+import 'package:xbilibili/entity/cinema_model.dart';
+import 'package:xbilibili/providers/cinema_page_provider.dart';
 
 /*
  * @ 创建者       milohuang
  * @ 创建时间     2020/1/21 15:40
  * @ 描述         
  */
-class BangumiPage extends StatelessWidget {
+class CinemaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       color: Theme.of(context).primaryColor,
       onRefresh: () {
-        Provider.of<BangumiProvider>(context, listen: false).getList();
-        return Future.delayed(Duration(seconds: 1));
+        return Future.delayed(Duration(seconds: 1), () {
+          Provider.of<CinemaPageProvider>(context, listen: false).getList();
+        });
       },
-      child: Container(
-        child: Consumer<BangumiProvider>(builder: (context, value, child) {
+      child: Consumer<CinemaPageProvider>(
+        builder: (context, value, child) {
           return ListView.builder(
             itemCount: value.list.length,
             itemBuilder: (context, index) {
               Widget child;
-              if (value.list[index] is BangumiBanners) {
+              if (value.list[index] is CinemaBanners) {
                 child = _buildBanners(value.list[index]);
-              } else if (value.list[index] is BangumiRegions) {
+              } else if (value.list[index] is CinemaRegions) {
                 child = _buildRegion(value.list[index]);
-              } else if (value.list[index] is String) {
-                child = _buildLogin(context);
-              } else if (value.list[index] is BangumiTile) {
+              } else if (value.list[index] is CinemaTile) {
                 child = _buildTile(value.list[index], context);
               }
               return child;
             },
           );
-        }),
+        },
       ),
     );
   }
 
-  Widget _buildTile(BangumiTile bangumiTile, context) {
+  Widget _buildTile(CinemaTile bangumiTile, context) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: Column(
@@ -69,9 +62,9 @@ class BangumiPage extends StatelessWidget {
             shrinkWrap: true,
             crossAxisSpacing: 10,
             mainAxisSpacing: 5,
-            childAspectRatio: 1.1,
+            childAspectRatio: 0.6,
             physics: NeverScrollableScrollPhysics(),
-            crossAxisCount: 2,
+            crossAxisCount: 3,
             children: bangumiTile.list.map((tile) {
               return _buildTileItem(tile, context);
             }).toList(),
@@ -86,7 +79,7 @@ class BangumiPage extends StatelessWidget {
     );
   }
 
-  Container _buildTileItem(BangumiItem tile, context) {
+  Container _buildTileItem(CinemaItem tile, context) {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,24 +116,26 @@ class BangumiPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  right: 5,
-                  top: 5,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 2, vertical: 1),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.all(Radius.circular(3))),
-                    child: Text(
-                      tile.badge,
-                      style: TextStyle(fontSize: 10, color: Colors.white),
-                    ),
-                  ),
-                ),
+                tile.badge != null
+                    ? Positioned(
+                        right: 5,
+                        top: 5,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 2, vertical: 1),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.all(Radius.circular(3))),
+                          child: Text(
+                            tile.badge,
+                            style: TextStyle(fontSize: 10, color: Colors.white),
+                          ),
+                        ),
+                      )
+                    : Container(),
               ],
             ),
           ),
-          Text(tile.title),
+          Text(tile.title,maxLines: 1,overflow: TextOverflow.ellipsis,),
           Text(
             tile.desc,
             style: TextStyle(color: Colors.grey, fontSize: 12),
@@ -150,16 +145,7 @@ class BangumiPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLogin(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed(RouteName.loginPage);
-      },
-      child: Image.asset(R.imagesBangumiHomeLoginGuide),
-    );
-  }
-
-  Widget _buildRegion(BangumiRegions regions) {
+  Widget _buildRegion(CinemaRegions regions) {
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -182,7 +168,7 @@ class BangumiPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBanners(BangumiBanners banners) {
+  Widget _buildBanners(CinemaBanners banners) {
     return Container(
       height: 190,
       margin: EdgeInsets.all(10),

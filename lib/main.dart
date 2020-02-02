@@ -6,6 +6,7 @@ import 'package:xbilibili/providers/hot_page_provider.dart';
 
 import 'providers/bangumi_page_provider.dart';
 import 'providers/channel_page_provider.dart';
+import 'providers/cinema_page_provider.dart';
 import 'providers/live_page_provider.dart';
 import 'providers/login_page_provider.dart';
 import 'providers/main_page_provider.dart';
@@ -34,6 +35,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => new RecommendPageProvider()),
         ChangeNotifierProvider(create: (_) => new HotPageProvider()),
         ChangeNotifierProvider(create: (_) => new BangumiProvider()),
+        ChangeNotifierProvider(create: (_) => new CinemaPageProvider()),
       ],
       child: MyApp(),
     ));

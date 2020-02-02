@@ -32,8 +32,8 @@ class BangumiRegions {
 class BangumiItem {
   String title;
   String desc;
-  String followView;
   String badge;
+  String followView;
   String cover;
 
   BangumiItem(this.title, this.desc, this.badge, this.followView, this.cover);
