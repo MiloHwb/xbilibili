@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:xbilibili/api/http_method.dart';
 import 'package:xbilibili/providers/hot_page_provider.dart';
 
+import 'providers/anniversary70_page_provider.dart';
 import 'providers/bangumi_page_provider.dart';
 import 'providers/channel_page_provider.dart';
 import 'providers/cinema_page_provider.dart';
@@ -36,6 +37,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => new HotPageProvider()),
         ChangeNotifierProvider(create: (_) => new BangumiProvider()),
         ChangeNotifierProvider(create: (_) => new CinemaPageProvider()),
+        ChangeNotifierProvider(create: (_) => new Anniversary70PageProvider()),
       ],
       child: MyApp(),
     ));

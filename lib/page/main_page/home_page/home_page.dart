@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'anniversary70_page.dart';
+import 'anniversary70_page/anniversary70_page.dart';
 import 'bangumi_page.dart';
 import 'cinema_page/cinema_page.dart';
 import 'hot_page/hot_page.dart';
