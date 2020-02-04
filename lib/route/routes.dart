@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/entity/live_player_request_model.dart';
 import 'package:xbilibili/page/about_page.dart';
+import 'package:xbilibili/page/live_player_page/live_player_page.dart';
 import 'package:xbilibili/page/login_page.dart';
-import 'package:xbilibili/page/main_page/home_page/live_page/live_player_page.dart';
 import 'package:xbilibili/page/main_page/main_page.dart';
 import 'package:xbilibili/page/search_page/search_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
@@ -27,10 +27,6 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
       return CupertinoPageRoute(builder: (context) => SearchPage());
     case RouteName.livePlayerPage:
       if (settings.arguments is LivePlayerRequestModel) {
-        ChangeNotifierProvider(
-          create: (_) => LivePlayerPageProvider(),
-          child: LivePlayerPage(settings.arguments),
-        );
 //        return MaterialPageRoute(builder: (context) => LivePlayerPage(settings.arguments));
         return MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider(

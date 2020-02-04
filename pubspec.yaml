@@ -33,6 +33,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   chewie: ^0.9.8+1
   video_player: ^0.10.6
+  flutter_widget_from_html: ^0.3.2+1
 
 dev_dependencies:
   flutter_test:

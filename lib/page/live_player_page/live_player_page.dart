@@ -4,10 +4,12 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:xbilibili/entity/live_info_entity.dart';
 import 'package:xbilibili/entity/live_player_request_model.dart';
 import 'package:xbilibili/providers/live_player_page_provider.dart';
 
-import '../../../../r.dart';
+import '../../r.dart';
+import 'liver_info_page.dart';
 
 /*
  * @ 创建者       黄文彪
@@ -31,6 +33,8 @@ class LivePlayerPage extends StatefulWidget {
 
 class _LivePlayerPageState extends State<LivePlayerPage> {
   LivePlayerPageProvider provider;
+
+  var _tabController = TabController(length: 2, vsync: AnimatedListState());
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +79,47 @@ class _LivePlayerPageState extends State<LivePlayerPage> {
           ),
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Text(data.title),
+      body: buildLiveInfo(data),
+    );
+  }
+
+  Widget buildLiveInfo(LiveInfoData data) {
+    if (data.isPortrait) {
+      return Container();
+    }
+
+    return Column(
+      children: <Widget>[
+        TabBar(
+          controller: _tabController,
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorColor: Theme.of(context).primaryColor,
+          labelColor: Theme.of(context).primaryColor,
+          tabs: <Widget>[
+            Container(
+              height: 35,
+              child: Tab(
+                text: '互动',
+              ),
+            ),
+            Container(
+              height: 35,
+              child: Tab(
+                text: '主播',
+              ),
+            ),
+          ],
         ),
-      ),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: <Widget>[
+              LiverInfoPage(data, widget.cover, widget.userName),
+              LiverInfoPage(data, widget.cover, widget.userName),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -106,5 +146,11 @@ class _LivePlayerPageState extends State<LivePlayerPage> {
 
   void getLiveInfo(context) {
     provider.getLiveInfo(id: widget.roomid);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 }

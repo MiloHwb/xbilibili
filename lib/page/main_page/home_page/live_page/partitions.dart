@@ -4,7 +4,7 @@ import 'package:xbilibili/entity/live_player_request_model.dart';
 import 'package:xbilibili/icons/bilibili_icons.dart';
 import 'package:xbilibili/route/routes.dart';
 
-import 'live_player_page.dart';
+import '../../../live_player_page/live_player_page.dart';
 
 class Partitions extends StatelessWidget {
   final List<LiveDataPartition> partitions;
@@ -55,7 +55,8 @@ class Partitions extends StatelessWidget {
         Navigator.of(context).pushNamed(RouteName.livePlayerPage,
             arguments: LivePlayerRequestModel(
               roomid: live.roomid.toString(),
-              cover: live.cover,
+              cover: live.face,
+              userName: live.uname,
             ));
       },
       child: Container(
