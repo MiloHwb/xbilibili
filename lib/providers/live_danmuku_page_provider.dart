@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
 
 class LiveDanmukuPageProvider with ChangeNotifier {
-  IOWebSocketChannel _channel;
+  IOWebSocketChannel channel;
   List messageList = [];
   int totalTime = 0;
   Timer timer;
@@ -15,7 +15,7 @@ class LiveDanmukuPageProvider with ChangeNotifier {
   LiveDanmukuPageProvider(String roomid) {
     timer = Timer.periodic(Duration(seconds: 70), (Timer timer) {
       totalTime += 70;
-      _channel?.sink?.close();
+      channel?.sink?.close();
       initLive(roomid);
     });
 
@@ -25,13 +25,13 @@ class LiveDanmukuPageProvider with ChangeNotifier {
   @override
   void dispose() {
     timer?.cancel();
-    _channel?.sink?.close();
+    channel?.sink?.close();
 
     super.dispose();
   }
 
   void initLive(String roomid) {
-    _channel = IOWebSocketChannel.connect('wss://broadcastlv.chat.bilibili.com:2245/sub', headers: {
+    channel = IOWebSocketChannel.connect('wss://broadcastlv.chat.bilibili.com:2245/sub', headers: {
       "Host": "broadcastlv.chat.bilibili.com:2245",
       "Sec-WebSocket-Version": " 13",
       "Connection": " Upgrade",
@@ -42,11 +42,11 @@ class LiveDanmukuPageProvider with ChangeNotifier {
 
   joinRoom(String roomid) {
     String msg = "{\"roomid\":$roomid}";
-    _channel.sink.add(encode(7, msg: msg));
+    channel.sink.add(encode(7, msg: msg));
   }
 
   void setListener() {
-    _channel.stream.listen((msg) {
+    channel.stream.listen((msg) {
       Uint8List list = Uint8List.fromList(msg);
       decode(list);
     });

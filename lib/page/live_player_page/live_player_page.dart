@@ -120,6 +120,7 @@ class _LivePlayerPageState extends State<LivePlayerPage> {
                 create: (_) => LiveDanmukuPageProvider(widget.roomid),
                 child: LiveDanmukuPage(widget.roomid),
               ),
+//              LiverInfoPage(data, widget.cover, widget.userName),
               LiverInfoPage(data, widget.cover, widget.userName),
             ],
           ),
@@ -156,6 +157,9 @@ class _LivePlayerPageState extends State<LivePlayerPage> {
   @override
   void dispose() {
     _tabController.dispose();
+//    provider.dispose();
+    provider.videoPlayerController.dispose();
+    provider.chewieController.dispose();
     super.dispose();
   }
 }

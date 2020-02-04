@@ -18,6 +18,14 @@ class LiveDanmukuPage extends StatefulWidget {
 
 class _LiveDanmukuPageState extends State<LiveDanmukuPage>
     with AutomaticKeepAliveClientMixin<LiveDanmukuPage> {
+  LiveDanmukuPageProvider provider;
+
+  @override
+  void initState() {
+    super.initState();
+    provider = Provider.of<LiveDanmukuPageProvider>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -80,7 +88,9 @@ class _LiveDanmukuPageState extends State<LiveDanmukuPage>
 
   @override
   void dispose() {
-    Provider.of<LiveDanmukuPageProvider>(context, listen: false).dispose();
+//    provider.dispose();
+    provider.timer?.cancel();
+    provider.channel?.sink?.close();
     super.dispose();
   }
 
