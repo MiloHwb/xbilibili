@@ -14,7 +14,8 @@ import '../../../../r.dart';
  * @ 创建时间     2020/2/3 14:12
  * @ 描述         
  */
-class LivePlayerPage extends StatelessWidget {
+
+class LivePlayerPage extends StatefulWidget {
   final String roomid;
   final String cover;
   final String userName;
@@ -24,6 +25,12 @@ class LivePlayerPage extends StatelessWidget {
         this.cover = model.cover,
         this.userName = model.userName;
 
+  @override
+  _LivePlayerPageState createState() => _LivePlayerPageState();
+}
+
+class _LivePlayerPageState extends State<LivePlayerPage> {
+  LivePlayerPageProvider provider;
   @override
   Widget build(BuildContext context) {
     init(context);
@@ -89,13 +96,21 @@ class LivePlayerPage extends StatelessWidget {
     );
   }
 
+  @override
+  void dispose() {
+    provider.chewieController?.dispose();
+    provider.videoPlayerController?.dispose();
+    super.dispose();
+  }
+
   void init(BuildContext context) {
-    Provider.of<LivePlayerPageProvider>(context, listen: false).reset();
-    Provider.of<LivePlayerPageProvider>(context, listen: false).setContext(context);
+    provider = Provider.of<LivePlayerPageProvider>(context, listen: false);
+    provider.reset();
+    provider.setContext(context);
     getLiveInfo(context);
   }
 
   void getLiveInfo(context) {
-    Provider.of<LivePlayerPageProvider>(context, listen: false).getLiveInfo(id: roomid);
+    provider.getLiveInfo(id: widget.roomid);
   }
 }

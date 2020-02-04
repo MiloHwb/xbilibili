@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:xbilibili/entity/live_player_request_model.dart';
 import 'package:xbilibili/page/about_page.dart';
 import 'package:xbilibili/page/login_page.dart';
@@ -8,6 +9,7 @@ import 'package:xbilibili/page/main_page/main_page.dart';
 import 'package:xbilibili/page/search_page/search_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
+import 'package:xbilibili/providers/live_player_page_provider.dart';
 
 Route<PageRoute> generateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -25,7 +27,17 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
       return CupertinoPageRoute(builder: (context) => SearchPage());
     case RouteName.livePlayerPage:
       if (settings.arguments is LivePlayerRequestModel) {
-        return CupertinoPageRoute(builder: (context) => LivePlayerPage(settings.arguments));
+        ChangeNotifierProvider(
+          create: (_) => LivePlayerPageProvider(),
+          child: LivePlayerPage(settings.arguments),
+        );
+//        return MaterialPageRoute(builder: (context) => LivePlayerPage(settings.arguments));
+        return MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+            create: (_) => LivePlayerPageProvider(),
+            child: LivePlayerPage(settings.arguments),
+          ),
+        );
       }
       return null;
     default:

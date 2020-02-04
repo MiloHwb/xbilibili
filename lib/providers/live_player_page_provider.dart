@@ -22,8 +22,6 @@ class LivePlayerPageProvider with ChangeNotifier {
     var liveInfoEntity = await HttpMethod.getLiveInfo(roomid: id);
     this.entity = liveInfoEntity;
 
-    print('获取直播信息');
-
     if (this.entity.data.liveStatus == 1) {
       await _getLiveUrl(id: id);
     }
@@ -34,8 +32,6 @@ class LivePlayerPageProvider with ChangeNotifier {
     if (liveUrlEntity == null && liveUrlEntity.data != null && liveUrlEntity.data.durl != null) {
       return;
     }
-    print('获取直播url');
-
 
     for (LiveUrlDataDurl value in liveUrlEntity.data.durl) {
       if (value != null && value.url != null) {
@@ -46,18 +42,13 @@ class LivePlayerPageProvider with ChangeNotifier {
     if (urlList.length != 0) {
       _setLiveUrl(urlList[index]);
     }
-
   }
 
   void _setLiveUrl(String url) {
-    print('设置直播url');
-
     videoPlayerController = VideoPlayerController.network(
       url,
     )..initialize().then((_) {
         if (this.context != null) {
-          print('初始化ChewieController');
-
           chewieController = ChewieController(
             videoPlayerController: videoPlayerController,
             placeholder: Center(
@@ -77,9 +68,8 @@ class LivePlayerPageProvider with ChangeNotifier {
             allowFullScreen: !this.entity.data.isPortrait,
 //            customControls: todo
           );
-        }else{
+        } else {
           print('context为空');
-
         }
         notifyListeners();
       });
