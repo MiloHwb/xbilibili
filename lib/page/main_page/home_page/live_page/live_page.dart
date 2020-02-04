@@ -44,50 +44,9 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
     '全部标签',
   ];
 
-//  final controller = RefreshController(initialRefresh: true);
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    /* return Scaffold(
-      floatingActionButton: _buildFloatingActionButton(context),
-      body: SmartRefresher(
-        controller: controller,
-        enablePullDown: true,
-        onRefresh: () {
-          _getLiveData(context);
-        },
-        child: Consumer<LivePageProvider>(
-          builder: (context, value, child) {
-            Widget child;
-            if (value.data == null) {
-              child = Container();
-            } else {
-              child = _buildListView(context, value.data);
-            }
-            return child;
-          },
-        ),
-      ),
-    );*/
-    /* RefreshIndicator(L
-      color: Theme.of(context).primaryColor,
-      onRefresh: () {
-        return _getLiveData(context);
-      },
-      child: Consumer<LivePageProvider>(
-        builder: (context, value, child) {
-          Widget child;
-          if (value.data == null) {
-            child = Container();
-          } else {
-            child = _buildListView(context, value.data);
-          }
-          return child;
-        },
-      ),
-    );*/
     return Scaffold(
       floatingActionButton: _buildFloatingActionButton(context),
       body: FutureBuilder(
@@ -137,12 +96,9 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
           autoplay: true,
           itemCount: banner.length,
           itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-              onTap: () {},
-              child: Image.network(
-                banner[index].pic,
-                fit: BoxFit.cover,
-              ),
+            return  Image.network(
+              banner[index].pic,
+              fit: BoxFit.cover,
             );
           },
         ),
@@ -151,10 +107,7 @@ class _LivePageState extends State<LivePage> with AutomaticKeepAliveClientMixin 
   }
 
   Future<Null> _getLiveData(context) async {
-    print('获取直播数据');
-
     await Provider.of<LivePageProvider>(context, listen: false).getLiveData();
-//    controller.refreshCompleted();
   }
 
   //构建悬浮按钮

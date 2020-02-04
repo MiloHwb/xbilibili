@@ -9,6 +9,7 @@ import 'providers/bangumi_page_provider.dart';
 import 'providers/channel_page_provider.dart';
 import 'providers/cinema_page_provider.dart';
 import 'providers/live_page_provider.dart';
+import 'providers/live_player_page_provider.dart';
 import 'providers/login_page_provider.dart';
 import 'providers/main_page_provider.dart';
 import 'providers/mall_page_privider.dart';
@@ -38,6 +39,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => new BangumiProvider()),
         ChangeNotifierProvider(create: (_) => new CinemaPageProvider()),
         ChangeNotifierProvider(create: (_) => new Anniversary70PageProvider()),
+        ChangeNotifierProvider(create: (_) => new LivePlayerPageProvider()),
       ],
       child: MyApp(),
     ));

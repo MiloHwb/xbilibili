@@ -31,6 +31,8 @@ dependencies:
   shared_preferences: ^0.5.6
   pull_to_refresh: ^1.5.8
   flutter_swiper: ^1.1.6
+  chewie: ^0.9.8+1
+  video_player: ^0.10.6
 
 dev_dependencies:
   flutter_test:
@@ -54,15 +56,16 @@ flutter:
   assets:
     # assets-generator-begin
     # images/*
-    - images/splashpage.jpg
-    - images/login_logo_account.png
-    - images/bili_default_avatar.png
-    - images/login_logo_password.png
     - images/avatar.jpg
     - images/bangumi_home_login_guide.png
-    - images/me_tv_sign_in.png
+    - images/bili_default_avatar.png
     - images/dynamic_login_guide.png
+    - images/ic_loading.png
+    - images/login_logo_account.png
+    - images/login_logo_password.png
+    - images/me_tv_sign_in.png
     - images/me_tv_sign_out.png
+    - images/splashpage.jpg
     # assets-generator-end
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

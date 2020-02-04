@@ -19,4 +19,10 @@ class Url {
   //热门
   static const hotUrl =
       'https://app.bilibili.com/x/v2/show/popular/index?build=5470400&mobi_app=android';
+
+  //直播信息
+  static const liveInfoUrl = 'https://api.live.bilibili.com/room/v1/Room/get_info';
+
+  //直播url
+  static const livePlayUrl = 'https://api.live.bilibili.com/room/v1/Room/playUrl';
 }

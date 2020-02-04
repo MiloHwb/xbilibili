@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:xbilibili/entity/channel_list_model.dart';
 import 'package:xbilibili/entity/hot_entity.dart';
 import 'package:xbilibili/entity/live_entity.dart';
+import 'package:xbilibili/entity/live_info_entity.dart';
+import 'package:xbilibili/entity/live_url_entity.dart';
 import 'package:xbilibili/entity/mall_list_model.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/entity/search_hot_model.dart';
@@ -139,6 +141,48 @@ class HttpMethod {
 
         var hotEntity = JsonConvert.fromJsonAsT<HotEntity>(responseStr);
         return hotEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  //获取直播信息
+  static Future<LiveInfoEntity> getLiveInfo({@required String roomid}) async {
+    try {
+      var url = Url.liveInfoUrl;
+      var response = await dio.get(url, queryParameters: {'id': roomid});
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+
+        var liveInfoEntity = JsonConvert.fromJsonAsT<LiveInfoEntity>(responseStr);
+        return liveInfoEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  //获取直播url
+  static Future<LiveUrlEntity> getLivePlayUrl({@required String roomid}) async {
+    try {
+      var url = Url.livePlayUrl;
+      var response = await dio.get(url, queryParameters: {
+        'build': '5470400',
+        'device': 'android',
+        'cid': roomid,
+      });
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+
+        var liveUrlEntity = JsonConvert.fromJsonAsT<LiveUrlEntity>(responseStr);
+        return liveUrlEntity;
       } else {
         throw Exception('接口异常');
       }
