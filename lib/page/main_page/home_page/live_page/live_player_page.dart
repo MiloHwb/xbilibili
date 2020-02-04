@@ -31,6 +31,7 @@ class LivePlayerPage extends StatefulWidget {
 
 class _LivePlayerPageState extends State<LivePlayerPage> {
   LivePlayerPageProvider provider;
+
   @override
   Widget build(BuildContext context) {
     init(context);
@@ -94,13 +95,6 @@ class _LivePlayerPageState extends State<LivePlayerPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    provider.chewieController?.dispose();
-    provider.videoPlayerController?.dispose();
-    super.dispose();
   }
 
   void init(BuildContext context) {

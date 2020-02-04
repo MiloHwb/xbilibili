@@ -4,6 +4,7 @@ import 'package:video_player/video_player.dart';
 import 'package:xbilibili/api/http_method.dart';
 import 'package:xbilibili/entity/live_info_entity.dart';
 import 'package:xbilibili/entity/live_url_entity.dart';
+import 'package:xbilibili/view/bilibili_chewie_controls.dart';
 
 class LivePlayerPageProvider with ChangeNotifier {
   BuildContext context;
@@ -66,7 +67,7 @@ class LivePlayerPageProvider with ChangeNotifier {
             allowedScreenSleep: false,
             isLive: true,
             allowFullScreen: !this.entity.data.isPortrait,
-//            customControls: todo
+            customControls: BilibiliChewieControls(),
           );
         } else {
           print('context为空');
@@ -82,5 +83,12 @@ class LivePlayerPageProvider with ChangeNotifier {
     videoPlayerController = null;
     context = null;
     chewieController = null;
+  }
+  @override
+  void dispose() {
+    chewieController?.dispose();
+    videoPlayerController?.dispose();
+    super.dispose();
+
   }
 }
