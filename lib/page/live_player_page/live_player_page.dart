@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/entity/live_info_entity.dart';
 import 'package:xbilibili/entity/live_player_request_model.dart';
+import 'package:xbilibili/providers/live_danmuku_page_provider.dart';
 import 'package:xbilibili/providers/live_player_page_provider.dart';
 
 import '../../r.dart';
+import 'live_danmuku_page.dart';
 import 'liver_info_page.dart';
 
 /*
@@ -114,7 +116,10 @@ class _LivePlayerPageState extends State<LivePlayerPage> {
           child: TabBarView(
             controller: _tabController,
             children: <Widget>[
-              LiverInfoPage(data, widget.cover, widget.userName),
+              ChangeNotifierProvider(
+                create: (_) => LiveDanmukuPageProvider(widget.roomid),
+                child: LiveDanmukuPage(widget.roomid),
+              ),
               LiverInfoPage(data, widget.cover, widget.userName),
             ],
           ),

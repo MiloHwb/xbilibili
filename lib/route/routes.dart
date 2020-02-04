@@ -27,7 +27,6 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
       return CupertinoPageRoute(builder: (context) => SearchPage());
     case RouteName.livePlayerPage:
       if (settings.arguments is LivePlayerRequestModel) {
-//        return MaterialPageRoute(builder: (context) => LivePlayerPage(settings.arguments));
         return MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider(
             create: (_) => LivePlayerPageProvider(),
