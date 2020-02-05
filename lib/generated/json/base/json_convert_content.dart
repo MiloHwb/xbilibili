@@ -11,8 +11,12 @@ import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/generated/json/recommend_entity_helper.dart';
 import 'package:xbilibili/entity/live_info_entity.dart';
 import 'package:xbilibili/generated/json/live_info_entity_helper.dart';
+import 'package:xbilibili/entity/video_url_entity.dart';
+import 'package:xbilibili/generated/json/video_url_entity_helper.dart';
 import 'package:xbilibili/entity/hot_entity.dart';
 import 'package:xbilibili/generated/json/hot_entity_helper.dart';
+import 'package:xbilibili/entity/video_detail_entity.dart';
+import 'package:xbilibili/generated/json/video_detail_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -59,7 +63,9 @@ class JsonConvert<T> {
 			return liveInfoDataNewPendantsFromJson(data as LiveInfoDataNewPendants, json) as T;			case LiveInfoDataNewPendantsFrame:
 			return liveInfoDataNewPendantsFrameFromJson(data as LiveInfoDataNewPendantsFrame, json) as T;			case LiveInfoDataNewPendantsMobileFrame:
 			return liveInfoDataNewPendantsMobileFrameFromJson(data as LiveInfoDataNewPendantsMobileFrame, json) as T;			case LiveInfoDataStudioInfo:
-			return liveInfoDataStudioInfoFromJson(data as LiveInfoDataStudioInfo, json) as T;			case HotEntity:
+			return liveInfoDataStudioInfoFromJson(data as LiveInfoDataStudioInfo, json) as T;			case VideoUrlEntity:
+			return videoUrlEntityFromJson(data as VideoUrlEntity, json) as T;			case VideoUrlDurl:
+			return videoUrlDurlFromJson(data as VideoUrlDurl, json) as T;			case HotEntity:
 			return hotEntityFromJson(data as HotEntity, json) as T;			case HotConfig:
 			return hotConfigFromJson(data as HotConfig, json) as T;			case HotConfigTopItem:
 			return hotConfigTopItemFromJson(data as HotConfigTopItem, json) as T;			case HotConfigTopItemsBubble:
@@ -73,7 +79,44 @@ class JsonConvert<T> {
 			return hotDataDescButtonFromJson(data as HotDataDescButton, json) as T;			case HotDataTopRcmdReasonStyle:
 			return hotDataTopRcmdReasonStyleFromJson(data as HotDataTopRcmdReasonStyle, json) as T;			case HotDataItem:
 			return hotDataItemFromJson(data as HotDataItem, json) as T;			case HotDataItemArgs:
-			return hotDataItemArgsFromJson(data as HotDataItemArgs, json) as T;    }
+			return hotDataItemArgsFromJson(data as HotDataItemArgs, json) as T;			case VideoDetailEntity:
+			return videoDetailEntityFromJson(data as VideoDetailEntity, json) as T;			case VideoDetailData:
+			return videoDetailDataFromJson(data as VideoDetailData, json) as T;			case VideoDetailDataRights:
+			return videoDetailDataRightsFromJson(data as VideoDetailDataRights, json) as T;			case VideoDetailDataOwner:
+			return videoDetailDataOwnerFromJson(data as VideoDetailDataOwner, json) as T;			case VideoDetailDataStat:
+			return videoDetailDataStatFromJson(data as VideoDetailDataStat, json) as T;			case VideoDetailDataDimension:
+			return videoDetailDataDimensionFromJson(data as VideoDetailDataDimension, json) as T;			case VideoDetailDataPage:
+			return videoDetailDataPageFromJson(data as VideoDetailDataPage, json) as T;			case VideoDetailDataPagesDimension:
+			return videoDetailDataPagesDimensionFromJson(data as VideoDetailDataPagesDimension, json) as T;			case VideoDetailDataPagesMeta:
+			return videoDetailDataPagesMetaFromJson(data as VideoDetailDataPagesMeta, json) as T;			case VideoDetailDataPagesDm:
+			return videoDetailDataPagesDmFromJson(data as VideoDetailDataPagesDm, json) as T;			case VideoDetailDataPagesDmMask:
+			return videoDetailDataPagesDmMaskFromJson(data as VideoDetailDataPagesDmMask, json) as T;			case VideoDetailDataOwnerExt:
+			return videoDetailDataOwnerExtFromJson(data as VideoDetailDataOwnerExt, json) as T;			case VideoDetailDataOwnerExtOfficialVerify:
+			return videoDetailDataOwnerExtOfficialVerifyFromJson(data as VideoDetailDataOwnerExtOfficialVerify, json) as T;			case VideoDetailDataOwnerExtVip:
+			return videoDetailDataOwnerExtVipFromJson(data as VideoDetailDataOwnerExtVip, json) as T;			case VideoDetailDataOwnerExtVipLabel:
+			return videoDetailDataOwnerExtVipLabelFromJson(data as VideoDetailDataOwnerExtVipLabel, json) as T;			case VideoDetailDataReqUser:
+			return videoDetailDataReqUserFromJson(data as VideoDetailDataReqUser, json) as T;			case VideoDetailDataTag:
+			return videoDetailDataTagFromJson(data as VideoDetailDataTag, json) as T;			case VideoDetailDataTIcon:
+			return videoDetailDataTIconFromJson(data as VideoDetailDataTIcon, json) as T;			case VideoDetailDataTIconAct:
+			return videoDetailDataTIconActFromJson(data as VideoDetailDataTIconAct, json) as T;			case VideoDetailDataTIconNew:
+			return videoDetailDataTIconNewFromJson(data as VideoDetailDataTIconNew, json) as T;			case VideoDetailDataElec:
+			return videoDetailDataElecFromJson(data as VideoDetailDataElec, json) as T;			case VideoDetailDataElecElecSet:
+			return videoDetailDataElecElecSetFromJson(data as VideoDetailDataElecElecSet, json) as T;			case VideoDetailDataElecElecSetElecList:
+			return videoDetailDataElecElecSetElecListFromJson(data as VideoDetailDataElecElecSetElecList, json) as T;			case VideoDetailDataRelate:
+			return videoDetailDataRelateFromJson(data as VideoDetailDataRelate, json) as T;			case VideoDetailDataRelatesOwner:
+			return videoDetailDataRelatesOwnerFromJson(data as VideoDetailDataRelatesOwner, json) as T;			case VideoDetailDataRelatesStat:
+			return videoDetailDataRelatesStatFromJson(data as VideoDetailDataRelatesStat, json) as T;			case VideoDetailDataDislikeReason:
+			return videoDetailDataDislikeReasonFromJson(data as VideoDetailDataDislikeReason, json) as T;			case VideoDetailDataDislikeReasonsV2:
+			return videoDetailDataDislikeReasonsV2FromJson(data as VideoDetailDataDislikeReasonsV2, json) as T;			case VideoDetailDataDislikeReasonsV2Reason:
+			return videoDetailDataDislikeReasonsV2ReasonFromJson(data as VideoDetailDataDislikeReasonsV2Reason, json) as T;			case VideoDetailDataPaster:
+			return videoDetailDataPasterFromJson(data as VideoDetailDataPaster, json) as T;			case VideoDetailDataPlayerIcon:
+			return videoDetailDataPlayerIconFromJson(data as VideoDetailDataPlayerIcon, json) as T;			case VideoDetailDataCm:
+			return videoDetailDataCmFromJson(data as VideoDetailDataCm, json) as T;			case VideoDetailDataCmsAdInfo:
+			return videoDetailDataCmsAdInfoFromJson(data as VideoDetailDataCmsAdInfo, json) as T;			case VideoDetailDataCmConfig:
+			return videoDetailDataCmConfigFromJson(data as VideoDetailDataCmConfig, json) as T;			case VideoDetailDataCmConfigAdsControl:
+			return videoDetailDataCmConfigAdsControlFromJson(data as VideoDetailDataCmConfigAdsControl, json) as T;			case VideoDetailDataLabel:
+			return videoDetailDataLabelFromJson(data as VideoDetailDataLabel, json) as T;			case VideoDetailDataConfig:
+			return videoDetailDataConfigFromJson(data as VideoDetailDataConfig, json) as T;    }
     return data as T;
   }  static _getToJson<T>(Type type, data) {
 		switch (type) {			case LiveEntity:
@@ -115,7 +158,9 @@ class JsonConvert<T> {
 			return liveInfoDataNewPendantsToJson(data as LiveInfoDataNewPendants);			case LiveInfoDataNewPendantsFrame:
 			return liveInfoDataNewPendantsFrameToJson(data as LiveInfoDataNewPendantsFrame);			case LiveInfoDataNewPendantsMobileFrame:
 			return liveInfoDataNewPendantsMobileFrameToJson(data as LiveInfoDataNewPendantsMobileFrame);			case LiveInfoDataStudioInfo:
-			return liveInfoDataStudioInfoToJson(data as LiveInfoDataStudioInfo);			case HotEntity:
+			return liveInfoDataStudioInfoToJson(data as LiveInfoDataStudioInfo);			case VideoUrlEntity:
+			return videoUrlEntityToJson(data as VideoUrlEntity);			case VideoUrlDurl:
+			return videoUrlDurlToJson(data as VideoUrlDurl);			case HotEntity:
 			return hotEntityToJson(data as HotEntity);			case HotConfig:
 			return hotConfigToJson(data as HotConfig);			case HotConfigTopItem:
 			return hotConfigTopItemToJson(data as HotConfigTopItem);			case HotConfigTopItemsBubble:
@@ -129,7 +174,44 @@ class JsonConvert<T> {
 			return hotDataDescButtonToJson(data as HotDataDescButton);			case HotDataTopRcmdReasonStyle:
 			return hotDataTopRcmdReasonStyleToJson(data as HotDataTopRcmdReasonStyle);			case HotDataItem:
 			return hotDataItemToJson(data as HotDataItem);			case HotDataItemArgs:
-			return hotDataItemArgsToJson(data as HotDataItemArgs);    }
+			return hotDataItemArgsToJson(data as HotDataItemArgs);			case VideoDetailEntity:
+			return videoDetailEntityToJson(data as VideoDetailEntity);			case VideoDetailData:
+			return videoDetailDataToJson(data as VideoDetailData);			case VideoDetailDataRights:
+			return videoDetailDataRightsToJson(data as VideoDetailDataRights);			case VideoDetailDataOwner:
+			return videoDetailDataOwnerToJson(data as VideoDetailDataOwner);			case VideoDetailDataStat:
+			return videoDetailDataStatToJson(data as VideoDetailDataStat);			case VideoDetailDataDimension:
+			return videoDetailDataDimensionToJson(data as VideoDetailDataDimension);			case VideoDetailDataPage:
+			return videoDetailDataPageToJson(data as VideoDetailDataPage);			case VideoDetailDataPagesDimension:
+			return videoDetailDataPagesDimensionToJson(data as VideoDetailDataPagesDimension);			case VideoDetailDataPagesMeta:
+			return videoDetailDataPagesMetaToJson(data as VideoDetailDataPagesMeta);			case VideoDetailDataPagesDm:
+			return videoDetailDataPagesDmToJson(data as VideoDetailDataPagesDm);			case VideoDetailDataPagesDmMask:
+			return videoDetailDataPagesDmMaskToJson(data as VideoDetailDataPagesDmMask);			case VideoDetailDataOwnerExt:
+			return videoDetailDataOwnerExtToJson(data as VideoDetailDataOwnerExt);			case VideoDetailDataOwnerExtOfficialVerify:
+			return videoDetailDataOwnerExtOfficialVerifyToJson(data as VideoDetailDataOwnerExtOfficialVerify);			case VideoDetailDataOwnerExtVip:
+			return videoDetailDataOwnerExtVipToJson(data as VideoDetailDataOwnerExtVip);			case VideoDetailDataOwnerExtVipLabel:
+			return videoDetailDataOwnerExtVipLabelToJson(data as VideoDetailDataOwnerExtVipLabel);			case VideoDetailDataReqUser:
+			return videoDetailDataReqUserToJson(data as VideoDetailDataReqUser);			case VideoDetailDataTag:
+			return videoDetailDataTagToJson(data as VideoDetailDataTag);			case VideoDetailDataTIcon:
+			return videoDetailDataTIconToJson(data as VideoDetailDataTIcon);			case VideoDetailDataTIconAct:
+			return videoDetailDataTIconActToJson(data as VideoDetailDataTIconAct);			case VideoDetailDataTIconNew:
+			return videoDetailDataTIconNewToJson(data as VideoDetailDataTIconNew);			case VideoDetailDataElec:
+			return videoDetailDataElecToJson(data as VideoDetailDataElec);			case VideoDetailDataElecElecSet:
+			return videoDetailDataElecElecSetToJson(data as VideoDetailDataElecElecSet);			case VideoDetailDataElecElecSetElecList:
+			return videoDetailDataElecElecSetElecListToJson(data as VideoDetailDataElecElecSetElecList);			case VideoDetailDataRelate:
+			return videoDetailDataRelateToJson(data as VideoDetailDataRelate);			case VideoDetailDataRelatesOwner:
+			return videoDetailDataRelatesOwnerToJson(data as VideoDetailDataRelatesOwner);			case VideoDetailDataRelatesStat:
+			return videoDetailDataRelatesStatToJson(data as VideoDetailDataRelatesStat);			case VideoDetailDataDislikeReason:
+			return videoDetailDataDislikeReasonToJson(data as VideoDetailDataDislikeReason);			case VideoDetailDataDislikeReasonsV2:
+			return videoDetailDataDislikeReasonsV2ToJson(data as VideoDetailDataDislikeReasonsV2);			case VideoDetailDataDislikeReasonsV2Reason:
+			return videoDetailDataDislikeReasonsV2ReasonToJson(data as VideoDetailDataDislikeReasonsV2Reason);			case VideoDetailDataPaster:
+			return videoDetailDataPasterToJson(data as VideoDetailDataPaster);			case VideoDetailDataPlayerIcon:
+			return videoDetailDataPlayerIconToJson(data as VideoDetailDataPlayerIcon);			case VideoDetailDataCm:
+			return videoDetailDataCmToJson(data as VideoDetailDataCm);			case VideoDetailDataCmsAdInfo:
+			return videoDetailDataCmsAdInfoToJson(data as VideoDetailDataCmsAdInfo);			case VideoDetailDataCmConfig:
+			return videoDetailDataCmConfigToJson(data as VideoDetailDataCmConfig);			case VideoDetailDataCmConfigAdsControl:
+			return videoDetailDataCmConfigAdsControlToJson(data as VideoDetailDataCmConfigAdsControl);			case VideoDetailDataLabel:
+			return videoDetailDataLabelToJson(data as VideoDetailDataLabel);			case VideoDetailDataConfig:
+			return videoDetailDataConfigToJson(data as VideoDetailDataConfig);    }
     return data as T;
   }  static T fromJsonAsT<T>(json) {
     switch (T.toString()) {			case 'LiveEntity':
@@ -171,7 +253,9 @@ class JsonConvert<T> {
 			return LiveInfoDataNewPendants().fromJson(json) as T;			case 'LiveInfoDataNewPendantsFrame':
 			return LiveInfoDataNewPendantsFrame().fromJson(json) as T;			case 'LiveInfoDataNewPendantsMobileFrame':
 			return LiveInfoDataNewPendantsMobileFrame().fromJson(json) as T;			case 'LiveInfoDataStudioInfo':
-			return LiveInfoDataStudioInfo().fromJson(json) as T;			case 'HotEntity':
+			return LiveInfoDataStudioInfo().fromJson(json) as T;			case 'VideoUrlEntity':
+			return VideoUrlEntity().fromJson(json) as T;			case 'VideoUrlDurl':
+			return VideoUrlDurl().fromJson(json) as T;			case 'HotEntity':
 			return HotEntity().fromJson(json) as T;			case 'HotConfig':
 			return HotConfig().fromJson(json) as T;			case 'HotConfigTopItem':
 			return HotConfigTopItem().fromJson(json) as T;			case 'HotConfigTopItemsBubble':
@@ -185,6 +269,43 @@ class JsonConvert<T> {
 			return HotDataDescButton().fromJson(json) as T;			case 'HotDataTopRcmdReasonStyle':
 			return HotDataTopRcmdReasonStyle().fromJson(json) as T;			case 'HotDataItem':
 			return HotDataItem().fromJson(json) as T;			case 'HotDataItemArgs':
-			return HotDataItemArgs().fromJson(json) as T;    }
+			return HotDataItemArgs().fromJson(json) as T;			case 'VideoDetailEntity':
+			return VideoDetailEntity().fromJson(json) as T;			case 'VideoDetailData':
+			return VideoDetailData().fromJson(json) as T;			case 'VideoDetailDataRights':
+			return VideoDetailDataRights().fromJson(json) as T;			case 'VideoDetailDataOwner':
+			return VideoDetailDataOwner().fromJson(json) as T;			case 'VideoDetailDataStat':
+			return VideoDetailDataStat().fromJson(json) as T;			case 'VideoDetailDataDimension':
+			return VideoDetailDataDimension().fromJson(json) as T;			case 'VideoDetailDataPage':
+			return VideoDetailDataPage().fromJson(json) as T;			case 'VideoDetailDataPagesDimension':
+			return VideoDetailDataPagesDimension().fromJson(json) as T;			case 'VideoDetailDataPagesMeta':
+			return VideoDetailDataPagesMeta().fromJson(json) as T;			case 'VideoDetailDataPagesDm':
+			return VideoDetailDataPagesDm().fromJson(json) as T;			case 'VideoDetailDataPagesDmMask':
+			return VideoDetailDataPagesDmMask().fromJson(json) as T;			case 'VideoDetailDataOwnerExt':
+			return VideoDetailDataOwnerExt().fromJson(json) as T;			case 'VideoDetailDataOwnerExtOfficialVerify':
+			return VideoDetailDataOwnerExtOfficialVerify().fromJson(json) as T;			case 'VideoDetailDataOwnerExtVip':
+			return VideoDetailDataOwnerExtVip().fromJson(json) as T;			case 'VideoDetailDataOwnerExtVipLabel':
+			return VideoDetailDataOwnerExtVipLabel().fromJson(json) as T;			case 'VideoDetailDataReqUser':
+			return VideoDetailDataReqUser().fromJson(json) as T;			case 'VideoDetailDataTag':
+			return VideoDetailDataTag().fromJson(json) as T;			case 'VideoDetailDataTIcon':
+			return VideoDetailDataTIcon().fromJson(json) as T;			case 'VideoDetailDataTIconAct':
+			return VideoDetailDataTIconAct().fromJson(json) as T;			case 'VideoDetailDataTIconNew':
+			return VideoDetailDataTIconNew().fromJson(json) as T;			case 'VideoDetailDataElec':
+			return VideoDetailDataElec().fromJson(json) as T;			case 'VideoDetailDataElecElecSet':
+			return VideoDetailDataElecElecSet().fromJson(json) as T;			case 'VideoDetailDataElecElecSetElecList':
+			return VideoDetailDataElecElecSetElecList().fromJson(json) as T;			case 'VideoDetailDataRelate':
+			return VideoDetailDataRelate().fromJson(json) as T;			case 'VideoDetailDataRelatesOwner':
+			return VideoDetailDataRelatesOwner().fromJson(json) as T;			case 'VideoDetailDataRelatesStat':
+			return VideoDetailDataRelatesStat().fromJson(json) as T;			case 'VideoDetailDataDislikeReason':
+			return VideoDetailDataDislikeReason().fromJson(json) as T;			case 'VideoDetailDataDislikeReasonsV2':
+			return VideoDetailDataDislikeReasonsV2().fromJson(json) as T;			case 'VideoDetailDataDislikeReasonsV2Reason':
+			return VideoDetailDataDislikeReasonsV2Reason().fromJson(json) as T;			case 'VideoDetailDataPaster':
+			return VideoDetailDataPaster().fromJson(json) as T;			case 'VideoDetailDataPlayerIcon':
+			return VideoDetailDataPlayerIcon().fromJson(json) as T;			case 'VideoDetailDataCm':
+			return VideoDetailDataCm().fromJson(json) as T;			case 'VideoDetailDataCmsAdInfo':
+			return VideoDetailDataCmsAdInfo().fromJson(json) as T;			case 'VideoDetailDataCmConfig':
+			return VideoDetailDataCmConfig().fromJson(json) as T;			case 'VideoDetailDataCmConfigAdsControl':
+			return VideoDetailDataCmConfigAdsControl().fromJson(json) as T;			case 'VideoDetailDataLabel':
+			return VideoDetailDataLabel().fromJson(json) as T;			case 'VideoDetailDataConfig':
+			return VideoDetailDataConfig().fromJson(json) as T;    }
     return null;
   }}

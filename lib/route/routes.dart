@@ -9,7 +9,9 @@ import 'package:xbilibili/page/main_page/main_page.dart';
 import 'package:xbilibili/page/search_page/search_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
+import 'package:xbilibili/page/video_player_page/video_player_page.dart';
 import 'package:xbilibili/providers/live_player_page_provider.dart';
+import 'package:xbilibili/providers/video_player_provider.dart';
 
 Route<PageRoute> generateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -31,6 +33,19 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
           builder: (context) => ChangeNotifierProvider(
             create: (_) => LivePlayerPageProvider(),
             child: LivePlayerPage(settings.arguments),
+          ),
+        );
+      }
+      return null;
+    case RouteName.videoPlayerPage:
+      if (settings.arguments is String) {
+        return MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+            create: (_) => VideoPlayerProvider(aid: settings.arguments),
+            lazy: false,
+            child: VideoPlayerPage(
+              aid: settings.arguments,
+            ),
           ),
         );
       }
@@ -61,4 +76,7 @@ class RouteName {
 
   //直播页
   static const livePlayerPage = '/livePlayerPage';
+
+  //视频详情页
+  static const videoPlayerPage = '/videoPlayerPage';
 }

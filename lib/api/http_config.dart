@@ -25,4 +25,10 @@ class Url {
 
   //直播url
   static const livePlayUrl = 'https://api.live.bilibili.com/room/v1/Room/playUrl';
+
+  //视频详情
+  static const videoDetailUrl = 'https://app.bilibili.com/x/v2/view';
+
+  //获取视频播放url
+  static const getVideoPlayUrl = 'https://app.bilibili.com/playurl';
 }

@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:xbilibili/entity/anniversary70_model.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/icons/bilibili_icons.dart';
+import 'package:xbilibili/route/routes.dart';
 import 'package:xbilibili/utils/time_utils.dart';
 
 /*
@@ -21,7 +22,8 @@ class AnniversaryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //todo 跳转播放
+        // 跳转播放
+        Navigator.of(context).pushNamed(RouteName.videoPlayerPage, arguments: data.param);
       },
       onLongPress: () {
         //显示封面

@@ -22,11 +22,11 @@ class Anniversary70VideoItem {
   String danmaku;
   String cover;
   String goto;
-  String parama;
+  String param;
   String len;
 
   Anniversary70VideoItem(
-      this.parama, this.cover, this.title, this.desc, this.play, this.danmaku, this.len,
+      this.param, this.cover, this.title, this.desc, this.play, this.danmaku, this.len,
       {this.goto = "av"});
 }
 

@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:crypto/crypto.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,8 @@ import 'package:xbilibili/entity/live_url_entity.dart';
 import 'package:xbilibili/entity/mall_list_model.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/entity/search_hot_model.dart';
+import 'package:xbilibili/entity/video_detail_entity.dart';
+import 'package:xbilibili/entity/video_url_entity.dart';
 import 'package:xbilibili/generated/json/base/json_convert_content.dart';
 
 import 'http_config.dart';
@@ -183,6 +187,59 @@ class HttpMethod {
 
         var liveUrlEntity = JsonConvert.fromJsonAsT<LiveUrlEntity>(responseStr);
         return liveUrlEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  //获取视频详情
+  static Future<VideoDetailEntity> getVideoDetail({@required String aid}) async {
+    try {
+      var url = Url.videoDetailUrl;
+      String appSecret = '560c52ccd288fed045859ed18bffd973';
+
+      String data =
+          'aid=$aid&appkey=1d8b6e7d45233436&build=5480400&ts=${DateTime.now().millisecondsSinceEpoch}';
+
+      String sign = md5.convert(utf8.encode(data + appSecret)).toString();
+      url = url + '?$data&sign=$sign';
+      print(url);
+      var response = await dio.get(url);
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+
+        var videoDetailEntity = JsonConvert.fromJsonAsT<VideoDetailEntity>(responseStr);
+        return videoDetailEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static Future<VideoUrlEntity> getVideoPlayUrl({@required String cid, int qn = 64}) async {
+    try {
+      var url = Url.getVideoPlayUrl;
+      String appSecret = 'aHRmhWMLkdeMuILqORnYZocwMBpMEOdt';
+
+      String data =
+          'appkey=iVGUTjsxvpLeuDCf&build=500001&buvid=C0928256-085D-4722-A38F-2E343710C8B3155817infoc&cid=$cid&device=android&otype=json&platform=android&qn=$qn';
+
+      String sign = md5.convert(utf8.encode(data + appSecret)).toString();
+      url = url + '?$data&sign=$sign';
+      print(url);
+      var response = await dio.get(url);
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+
+        var videoUrlEntity = JsonConvert.fromJsonAsT<VideoUrlEntity>(responseStr);
+        return videoUrlEntity;
       } else {
         throw Exception('接口异常');
       }
