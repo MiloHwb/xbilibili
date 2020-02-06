@@ -31,4 +31,6 @@ class Url {
 
   //获取视频播放url
   static const getVideoPlayUrl = 'https://app.bilibili.com/playurl';
+
+  static const getReplyUrl = 'https://api.bilibili.com/x/v2/reply/main';
 }

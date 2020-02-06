@@ -12,6 +12,7 @@ import 'package:xbilibili/entity/live_info_entity.dart';
 import 'package:xbilibili/entity/live_url_entity.dart';
 import 'package:xbilibili/entity/mall_list_model.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
+import 'package:xbilibili/entity/reply_entity.dart';
 import 'package:xbilibili/entity/search_hot_model.dart';
 import 'package:xbilibili/entity/video_detail_entity.dart';
 import 'package:xbilibili/entity/video_url_entity.dart';
@@ -240,6 +241,31 @@ class HttpMethod {
 
         var videoUrlEntity = JsonConvert.fromJsonAsT<VideoUrlEntity>(responseStr);
         return videoUrlEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static Future<ReplyEntity> getReplyUrl({@required String aid, int next: 0}) async {
+    try {
+      var url = Url.getReplyUrl;
+      var response = await dio.get(url, queryParameters: {
+        'appkey': '1d8b6e7d45233436',
+        'build': '5370000',
+        'mobi_app': 'android',
+        'type': '1',
+        'next': next,
+        'oid': aid,
+      });
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+
+        var replyEntity = JsonConvert.fromJsonAsT<ReplyEntity>(responseStr);
+        return replyEntity;
       } else {
         throw Exception('接口异常');
       }

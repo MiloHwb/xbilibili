@@ -13,6 +13,8 @@ import 'package:xbilibili/entity/live_info_entity.dart';
 import 'package:xbilibili/generated/json/live_info_entity_helper.dart';
 import 'package:xbilibili/entity/video_url_entity.dart';
 import 'package:xbilibili/generated/json/video_url_entity_helper.dart';
+import 'package:xbilibili/entity/reply_entity.dart';
+import 'package:xbilibili/generated/json/reply_entity_helper.dart';
 import 'package:xbilibili/entity/hot_entity.dart';
 import 'package:xbilibili/generated/json/hot_entity_helper.dart';
 import 'package:xbilibili/entity/video_detail_entity.dart';
@@ -65,7 +67,53 @@ class JsonConvert<T> {
 			return liveInfoDataNewPendantsMobileFrameFromJson(data as LiveInfoDataNewPendantsMobileFrame, json) as T;			case LiveInfoDataStudioInfo:
 			return liveInfoDataStudioInfoFromJson(data as LiveInfoDataStudioInfo, json) as T;			case VideoUrlEntity:
 			return videoUrlEntityFromJson(data as VideoUrlEntity, json) as T;			case VideoUrlDurl:
-			return videoUrlDurlFromJson(data as VideoUrlDurl, json) as T;			case HotEntity:
+			return videoUrlDurlFromJson(data as VideoUrlDurl, json) as T;			case ReplyEntity:
+			return replyEntityFromJson(data as ReplyEntity, json) as T;			case ReplyData:
+			return replyDataFromJson(data as ReplyData, json) as T;			case ReplyDataCursor:
+			return replyDataCursorFromJson(data as ReplyDataCursor, json) as T;			case ReplyDataHot:
+			return replyDataHotFromJson(data as ReplyDataHot, json) as T;			case ReplyDataHotsMember:
+			return replyDataHotsMemberFromJson(data as ReplyDataHotsMember, json) as T;			case ReplyDataHotsMemberLevelInfo:
+			return replyDataHotsMemberLevelInfoFromJson(data as ReplyDataHotsMemberLevelInfo, json) as T;			case ReplyDataHotsMemberPendant:
+			return replyDataHotsMemberPendantFromJson(data as ReplyDataHotsMemberPendant, json) as T;			case ReplyDataHotsMemberNameplate:
+			return replyDataHotsMemberNameplateFromJson(data as ReplyDataHotsMemberNameplate, json) as T;			case ReplyDataHotsMemberOfficialVerify:
+			return replyDataHotsMemberOfficialVerifyFromJson(data as ReplyDataHotsMemberOfficialVerify, json) as T;			case ReplyDataHotsMemberVip:
+			return replyDataHotsMemberVipFromJson(data as ReplyDataHotsMemberVip, json) as T;			case ReplyDataHotsMemberVipLabel:
+			return replyDataHotsMemberVipLabelFromJson(data as ReplyDataHotsMemberVipLabel, json) as T;			case ReplyDataHotsMemberUserSailing:
+			return replyDataHotsMemberUserSailingFromJson(data as ReplyDataHotsMemberUserSailing, json) as T;			case ReplyDataHotsContent:
+			return replyDataHotsContentFromJson(data as ReplyDataHotsContent, json) as T;			case ReplyDataHotsReply:
+			return replyDataHotsReplyFromJson(data as ReplyDataHotsReply, json) as T;			case ReplyDataHotsRepliesMember:
+			return replyDataHotsRepliesMemberFromJson(data as ReplyDataHotsRepliesMember, json) as T;			case ReplyDataHotsRepliesMemberLevelInfo:
+			return replyDataHotsRepliesMemberLevelInfoFromJson(data as ReplyDataHotsRepliesMemberLevelInfo, json) as T;			case ReplyDataHotsRepliesMemberPendant:
+			return replyDataHotsRepliesMemberPendantFromJson(data as ReplyDataHotsRepliesMemberPendant, json) as T;			case ReplyDataHotsRepliesMemberNameplate:
+			return replyDataHotsRepliesMemberNameplateFromJson(data as ReplyDataHotsRepliesMemberNameplate, json) as T;			case ReplyDataHotsRepliesMemberOfficialVerify:
+			return replyDataHotsRepliesMemberOfficialVerifyFromJson(data as ReplyDataHotsRepliesMemberOfficialVerify, json) as T;			case ReplyDataHotsRepliesMemberVip:
+			return replyDataHotsRepliesMemberVipFromJson(data as ReplyDataHotsRepliesMemberVip, json) as T;			case ReplyDataHotsRepliesMemberVipLabel:
+			return replyDataHotsRepliesMemberVipLabelFromJson(data as ReplyDataHotsRepliesMemberVipLabel, json) as T;			case ReplyDataHotsRepliesMemberUserSailing:
+			return replyDataHotsRepliesMemberUserSailingFromJson(data as ReplyDataHotsRepliesMemberUserSailing, json) as T;			case ReplyDataHotsRepliesMemberUserSailingPendant:
+			return replyDataHotsRepliesMemberUserSailingPendantFromJson(data as ReplyDataHotsRepliesMemberUserSailingPendant, json) as T;			case ReplyDataHotsRepliesContent:
+			return replyDataHotsRepliesContentFromJson(data as ReplyDataHotsRepliesContent, json) as T;			case ReplyDataHotsRepliesFolder:
+			return replyDataHotsRepliesFolderFromJson(data as ReplyDataHotsRepliesFolder, json) as T;			case ReplyDataHotsRepliesUpAction:
+			return replyDataHotsRepliesUpActionFromJson(data as ReplyDataHotsRepliesUpAction, json) as T;			case ReplyDataHotsFolder:
+			return replyDataHotsFolderFromJson(data as ReplyDataHotsFolder, json) as T;			case ReplyDataHotsUpAction:
+			return replyDataHotsUpActionFromJson(data as ReplyDataHotsUpAction, json) as T;			case ReplyDataReply:
+			return replyDataReplyFromJson(data as ReplyDataReply, json) as T;			case ReplyDataRepliesMember:
+			return replyDataRepliesMemberFromJson(data as ReplyDataRepliesMember, json) as T;			case ReplyDataRepliesMemberLevelInfo:
+			return replyDataRepliesMemberLevelInfoFromJson(data as ReplyDataRepliesMemberLevelInfo, json) as T;			case ReplyDataRepliesMemberPendant:
+			return replyDataRepliesMemberPendantFromJson(data as ReplyDataRepliesMemberPendant, json) as T;			case ReplyDataRepliesMemberNameplate:
+			return replyDataRepliesMemberNameplateFromJson(data as ReplyDataRepliesMemberNameplate, json) as T;			case ReplyDataRepliesMemberOfficialVerify:
+			return replyDataRepliesMemberOfficialVerifyFromJson(data as ReplyDataRepliesMemberOfficialVerify, json) as T;			case ReplyDataRepliesMemberVip:
+			return replyDataRepliesMemberVipFromJson(data as ReplyDataRepliesMemberVip, json) as T;			case ReplyDataRepliesMemberVipLabel:
+			return replyDataRepliesMemberVipLabelFromJson(data as ReplyDataRepliesMemberVipLabel, json) as T;			case ReplyDataRepliesMemberUserSailing:
+			return replyDataRepliesMemberUserSailingFromJson(data as ReplyDataRepliesMemberUserSailing, json) as T;			case ReplyDataRepliesMemberUserSailingPendant:
+			return replyDataRepliesMemberUserSailingPendantFromJson(data as ReplyDataRepliesMemberUserSailingPendant, json) as T;			case ReplyDataRepliesContent:
+			return replyDataRepliesContentFromJson(data as ReplyDataRepliesContent, json) as T;			case ReplyDataRepliesFolder:
+			return replyDataRepliesFolderFromJson(data as ReplyDataRepliesFolder, json) as T;			case ReplyDataRepliesUpAction:
+			return replyDataRepliesUpActionFromJson(data as ReplyDataRepliesUpAction, json) as T;			case ReplyDataTop:
+			return replyDataTopFromJson(data as ReplyDataTop, json) as T;			case ReplyDataFolder:
+			return replyDataFolderFromJson(data as ReplyDataFolder, json) as T;			case ReplyDataConfig:
+			return replyDataConfigFromJson(data as ReplyDataConfig, json) as T;			case ReplyDataUpper:
+			return replyDataUpperFromJson(data as ReplyDataUpper, json) as T;			case ReplyDataControl:
+			return replyDataControlFromJson(data as ReplyDataControl, json) as T;			case HotEntity:
 			return hotEntityFromJson(data as HotEntity, json) as T;			case HotConfig:
 			return hotConfigFromJson(data as HotConfig, json) as T;			case HotConfigTopItem:
 			return hotConfigTopItemFromJson(data as HotConfigTopItem, json) as T;			case HotConfigTopItemsBubble:
@@ -160,7 +208,53 @@ class JsonConvert<T> {
 			return liveInfoDataNewPendantsMobileFrameToJson(data as LiveInfoDataNewPendantsMobileFrame);			case LiveInfoDataStudioInfo:
 			return liveInfoDataStudioInfoToJson(data as LiveInfoDataStudioInfo);			case VideoUrlEntity:
 			return videoUrlEntityToJson(data as VideoUrlEntity);			case VideoUrlDurl:
-			return videoUrlDurlToJson(data as VideoUrlDurl);			case HotEntity:
+			return videoUrlDurlToJson(data as VideoUrlDurl);			case ReplyEntity:
+			return replyEntityToJson(data as ReplyEntity);			case ReplyData:
+			return replyDataToJson(data as ReplyData);			case ReplyDataCursor:
+			return replyDataCursorToJson(data as ReplyDataCursor);			case ReplyDataHot:
+			return replyDataHotToJson(data as ReplyDataHot);			case ReplyDataHotsMember:
+			return replyDataHotsMemberToJson(data as ReplyDataHotsMember);			case ReplyDataHotsMemberLevelInfo:
+			return replyDataHotsMemberLevelInfoToJson(data as ReplyDataHotsMemberLevelInfo);			case ReplyDataHotsMemberPendant:
+			return replyDataHotsMemberPendantToJson(data as ReplyDataHotsMemberPendant);			case ReplyDataHotsMemberNameplate:
+			return replyDataHotsMemberNameplateToJson(data as ReplyDataHotsMemberNameplate);			case ReplyDataHotsMemberOfficialVerify:
+			return replyDataHotsMemberOfficialVerifyToJson(data as ReplyDataHotsMemberOfficialVerify);			case ReplyDataHotsMemberVip:
+			return replyDataHotsMemberVipToJson(data as ReplyDataHotsMemberVip);			case ReplyDataHotsMemberVipLabel:
+			return replyDataHotsMemberVipLabelToJson(data as ReplyDataHotsMemberVipLabel);			case ReplyDataHotsMemberUserSailing:
+			return replyDataHotsMemberUserSailingToJson(data as ReplyDataHotsMemberUserSailing);			case ReplyDataHotsContent:
+			return replyDataHotsContentToJson(data as ReplyDataHotsContent);			case ReplyDataHotsReply:
+			return replyDataHotsReplyToJson(data as ReplyDataHotsReply);			case ReplyDataHotsRepliesMember:
+			return replyDataHotsRepliesMemberToJson(data as ReplyDataHotsRepliesMember);			case ReplyDataHotsRepliesMemberLevelInfo:
+			return replyDataHotsRepliesMemberLevelInfoToJson(data as ReplyDataHotsRepliesMemberLevelInfo);			case ReplyDataHotsRepliesMemberPendant:
+			return replyDataHotsRepliesMemberPendantToJson(data as ReplyDataHotsRepliesMemberPendant);			case ReplyDataHotsRepliesMemberNameplate:
+			return replyDataHotsRepliesMemberNameplateToJson(data as ReplyDataHotsRepliesMemberNameplate);			case ReplyDataHotsRepliesMemberOfficialVerify:
+			return replyDataHotsRepliesMemberOfficialVerifyToJson(data as ReplyDataHotsRepliesMemberOfficialVerify);			case ReplyDataHotsRepliesMemberVip:
+			return replyDataHotsRepliesMemberVipToJson(data as ReplyDataHotsRepliesMemberVip);			case ReplyDataHotsRepliesMemberVipLabel:
+			return replyDataHotsRepliesMemberVipLabelToJson(data as ReplyDataHotsRepliesMemberVipLabel);			case ReplyDataHotsRepliesMemberUserSailing:
+			return replyDataHotsRepliesMemberUserSailingToJson(data as ReplyDataHotsRepliesMemberUserSailing);			case ReplyDataHotsRepliesMemberUserSailingPendant:
+			return replyDataHotsRepliesMemberUserSailingPendantToJson(data as ReplyDataHotsRepliesMemberUserSailingPendant);			case ReplyDataHotsRepliesContent:
+			return replyDataHotsRepliesContentToJson(data as ReplyDataHotsRepliesContent);			case ReplyDataHotsRepliesFolder:
+			return replyDataHotsRepliesFolderToJson(data as ReplyDataHotsRepliesFolder);			case ReplyDataHotsRepliesUpAction:
+			return replyDataHotsRepliesUpActionToJson(data as ReplyDataHotsRepliesUpAction);			case ReplyDataHotsFolder:
+			return replyDataHotsFolderToJson(data as ReplyDataHotsFolder);			case ReplyDataHotsUpAction:
+			return replyDataHotsUpActionToJson(data as ReplyDataHotsUpAction);			case ReplyDataReply:
+			return replyDataReplyToJson(data as ReplyDataReply);			case ReplyDataRepliesMember:
+			return replyDataRepliesMemberToJson(data as ReplyDataRepliesMember);			case ReplyDataRepliesMemberLevelInfo:
+			return replyDataRepliesMemberLevelInfoToJson(data as ReplyDataRepliesMemberLevelInfo);			case ReplyDataRepliesMemberPendant:
+			return replyDataRepliesMemberPendantToJson(data as ReplyDataRepliesMemberPendant);			case ReplyDataRepliesMemberNameplate:
+			return replyDataRepliesMemberNameplateToJson(data as ReplyDataRepliesMemberNameplate);			case ReplyDataRepliesMemberOfficialVerify:
+			return replyDataRepliesMemberOfficialVerifyToJson(data as ReplyDataRepliesMemberOfficialVerify);			case ReplyDataRepliesMemberVip:
+			return replyDataRepliesMemberVipToJson(data as ReplyDataRepliesMemberVip);			case ReplyDataRepliesMemberVipLabel:
+			return replyDataRepliesMemberVipLabelToJson(data as ReplyDataRepliesMemberVipLabel);			case ReplyDataRepliesMemberUserSailing:
+			return replyDataRepliesMemberUserSailingToJson(data as ReplyDataRepliesMemberUserSailing);			case ReplyDataRepliesMemberUserSailingPendant:
+			return replyDataRepliesMemberUserSailingPendantToJson(data as ReplyDataRepliesMemberUserSailingPendant);			case ReplyDataRepliesContent:
+			return replyDataRepliesContentToJson(data as ReplyDataRepliesContent);			case ReplyDataRepliesFolder:
+			return replyDataRepliesFolderToJson(data as ReplyDataRepliesFolder);			case ReplyDataRepliesUpAction:
+			return replyDataRepliesUpActionToJson(data as ReplyDataRepliesUpAction);			case ReplyDataTop:
+			return replyDataTopToJson(data as ReplyDataTop);			case ReplyDataFolder:
+			return replyDataFolderToJson(data as ReplyDataFolder);			case ReplyDataConfig:
+			return replyDataConfigToJson(data as ReplyDataConfig);			case ReplyDataUpper:
+			return replyDataUpperToJson(data as ReplyDataUpper);			case ReplyDataControl:
+			return replyDataControlToJson(data as ReplyDataControl);			case HotEntity:
 			return hotEntityToJson(data as HotEntity);			case HotConfig:
 			return hotConfigToJson(data as HotConfig);			case HotConfigTopItem:
 			return hotConfigTopItemToJson(data as HotConfigTopItem);			case HotConfigTopItemsBubble:
@@ -255,7 +349,53 @@ class JsonConvert<T> {
 			return LiveInfoDataNewPendantsMobileFrame().fromJson(json) as T;			case 'LiveInfoDataStudioInfo':
 			return LiveInfoDataStudioInfo().fromJson(json) as T;			case 'VideoUrlEntity':
 			return VideoUrlEntity().fromJson(json) as T;			case 'VideoUrlDurl':
-			return VideoUrlDurl().fromJson(json) as T;			case 'HotEntity':
+			return VideoUrlDurl().fromJson(json) as T;			case 'ReplyEntity':
+			return ReplyEntity().fromJson(json) as T;			case 'ReplyData':
+			return ReplyData().fromJson(json) as T;			case 'ReplyDataCursor':
+			return ReplyDataCursor().fromJson(json) as T;			case 'ReplyDataHot':
+			return ReplyDataHot().fromJson(json) as T;			case 'ReplyDataHotsMember':
+			return ReplyDataHotsMember().fromJson(json) as T;			case 'ReplyDataHotsMemberLevelInfo':
+			return ReplyDataHotsMemberLevelInfo().fromJson(json) as T;			case 'ReplyDataHotsMemberPendant':
+			return ReplyDataHotsMemberPendant().fromJson(json) as T;			case 'ReplyDataHotsMemberNameplate':
+			return ReplyDataHotsMemberNameplate().fromJson(json) as T;			case 'ReplyDataHotsMemberOfficialVerify':
+			return ReplyDataHotsMemberOfficialVerify().fromJson(json) as T;			case 'ReplyDataHotsMemberVip':
+			return ReplyDataHotsMemberVip().fromJson(json) as T;			case 'ReplyDataHotsMemberVipLabel':
+			return ReplyDataHotsMemberVipLabel().fromJson(json) as T;			case 'ReplyDataHotsMemberUserSailing':
+			return ReplyDataHotsMemberUserSailing().fromJson(json) as T;			case 'ReplyDataHotsContent':
+			return ReplyDataHotsContent().fromJson(json) as T;			case 'ReplyDataHotsReply':
+			return ReplyDataHotsReply().fromJson(json) as T;			case 'ReplyDataHotsRepliesMember':
+			return ReplyDataHotsRepliesMember().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberLevelInfo':
+			return ReplyDataHotsRepliesMemberLevelInfo().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberPendant':
+			return ReplyDataHotsRepliesMemberPendant().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberNameplate':
+			return ReplyDataHotsRepliesMemberNameplate().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberOfficialVerify':
+			return ReplyDataHotsRepliesMemberOfficialVerify().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberVip':
+			return ReplyDataHotsRepliesMemberVip().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberVipLabel':
+			return ReplyDataHotsRepliesMemberVipLabel().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberUserSailing':
+			return ReplyDataHotsRepliesMemberUserSailing().fromJson(json) as T;			case 'ReplyDataHotsRepliesMemberUserSailingPendant':
+			return ReplyDataHotsRepliesMemberUserSailingPendant().fromJson(json) as T;			case 'ReplyDataHotsRepliesContent':
+			return ReplyDataHotsRepliesContent().fromJson(json) as T;			case 'ReplyDataHotsRepliesFolder':
+			return ReplyDataHotsRepliesFolder().fromJson(json) as T;			case 'ReplyDataHotsRepliesUpAction':
+			return ReplyDataHotsRepliesUpAction().fromJson(json) as T;			case 'ReplyDataHotsFolder':
+			return ReplyDataHotsFolder().fromJson(json) as T;			case 'ReplyDataHotsUpAction':
+			return ReplyDataHotsUpAction().fromJson(json) as T;			case 'ReplyDataReply':
+			return ReplyDataReply().fromJson(json) as T;			case 'ReplyDataRepliesMember':
+			return ReplyDataRepliesMember().fromJson(json) as T;			case 'ReplyDataRepliesMemberLevelInfo':
+			return ReplyDataRepliesMemberLevelInfo().fromJson(json) as T;			case 'ReplyDataRepliesMemberPendant':
+			return ReplyDataRepliesMemberPendant().fromJson(json) as T;			case 'ReplyDataRepliesMemberNameplate':
+			return ReplyDataRepliesMemberNameplate().fromJson(json) as T;			case 'ReplyDataRepliesMemberOfficialVerify':
+			return ReplyDataRepliesMemberOfficialVerify().fromJson(json) as T;			case 'ReplyDataRepliesMemberVip':
+			return ReplyDataRepliesMemberVip().fromJson(json) as T;			case 'ReplyDataRepliesMemberVipLabel':
+			return ReplyDataRepliesMemberVipLabel().fromJson(json) as T;			case 'ReplyDataRepliesMemberUserSailing':
+			return ReplyDataRepliesMemberUserSailing().fromJson(json) as T;			case 'ReplyDataRepliesMemberUserSailingPendant':
+			return ReplyDataRepliesMemberUserSailingPendant().fromJson(json) as T;			case 'ReplyDataRepliesContent':
+			return ReplyDataRepliesContent().fromJson(json) as T;			case 'ReplyDataRepliesFolder':
+			return ReplyDataRepliesFolder().fromJson(json) as T;			case 'ReplyDataRepliesUpAction':
+			return ReplyDataRepliesUpAction().fromJson(json) as T;			case 'ReplyDataTop':
+			return ReplyDataTop().fromJson(json) as T;			case 'ReplyDataFolder':
+			return ReplyDataFolder().fromJson(json) as T;			case 'ReplyDataConfig':
+			return ReplyDataConfig().fromJson(json) as T;			case 'ReplyDataUpper':
+			return ReplyDataUpper().fromJson(json) as T;			case 'ReplyDataControl':
+			return ReplyDataControl().fromJson(json) as T;			case 'HotEntity':
 			return HotEntity().fromJson(json) as T;			case 'HotConfig':
 			return HotConfig().fromJson(json) as T;			case 'HotConfigTopItem':
 			return HotConfigTopItem().fromJson(json) as T;			case 'HotConfigTopItemsBubble':

@@ -67,6 +67,7 @@ flutter:
     - images/bili_default_avatar.png
     - images/dynamic_login_guide.png
     - images/ic_loading.png
+    - images/img_tips_error_load_error.png
     - images/login_logo_account.png
     - images/login_logo_password.png
     - images/me_tv_sign_in.png

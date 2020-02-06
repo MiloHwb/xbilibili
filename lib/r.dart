@@ -9,6 +9,8 @@ class R {
   static final String imagesDynamicLoginGuide = 'images/dynamic_login_guide.png';
   /// ![](http://127.0.0.1:10086/images/ic_loading.png)
   static final String imagesIcLoading = 'images/ic_loading.png';
+  /// ![](http://127.0.0.1:10086/images/img_tips_error_load_error.png)
+  static final String imagesImgTipsErrorLoadError = 'images/img_tips_error_load_error.png';
   /// ![](http://127.0.0.1:10086/images/login_logo_account.png)
   static final String imagesLoginLogoAccount = 'images/login_logo_account.png';
   /// ![](http://127.0.0.1:10086/images/login_logo_password.png)

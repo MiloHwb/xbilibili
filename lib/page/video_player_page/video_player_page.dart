@@ -10,8 +10,10 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/icons/bilibili_icons.dart';
 import 'package:xbilibili/providers/video_player_provider.dart';
+import 'package:xbilibili/providers/video_replies_page_provider.dart';
 
 import '../video_detail_page.dart';
+import '../video_replies_page.dart';
 
 /*
  * @ 创建者       黄文彪
@@ -132,7 +134,11 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                   controller: _tabController,
                   children: <Widget>[
                     VideoDetailPage(videoDetail: value.videoDetail, aid: widget.aid),
-                    VideoDetailPage(videoDetail: value.videoDetail, aid: widget.aid),
+                    ChangeNotifierProvider(
+                      create: (_) => VideoRepliesPageProvider(widget.aid),
+                      lazy: false,
+                      child: VideoRepliesPage(),
+                    ),
                   ],
                 )
               : Center(
