@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/icons/bilibili_icons.dart';
+import 'package:xbilibili/route/routes.dart';
 import 'package:xbilibili/utils/time_utils.dart';
 
 /*
@@ -20,7 +21,8 @@ class RecommendItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //todo 跳转播放
+        // 跳转播放
+        Navigator.pushNamed(context, RouteName.videoPlayerPageWithDanmu, arguments: data.param);
       },
       onLongPress: () {
         //显示封面

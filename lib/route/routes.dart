@@ -10,8 +10,10 @@ import 'package:xbilibili/page/search_page/search_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
 import 'package:xbilibili/page/video_player_page/video_player_page.dart';
+import 'package:xbilibili/page/video_player_page/video_player_page_with_danmu.dart';
 import 'package:xbilibili/providers/live_player_page_provider.dart';
 import 'package:xbilibili/providers/video_player_provider.dart';
+import 'package:xbilibili/providers/video_player_with_danmu_provider.dart';
 
 Route<PageRoute> generateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -50,6 +52,19 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
         );
       }
       return null;
+    case RouteName.videoPlayerPageWithDanmu:
+      if (settings.arguments is String) {
+        return MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+            create: (_) => VideoPlayerPageWithDanmuProvider(aid: settings.arguments),
+            lazy: false,
+            child: VideoPlayerPageWithDanmu(
+              aid: settings.arguments,
+            ),
+          ),
+        );
+      }
+      return null;
     default:
       return MaterialPageRoute(builder: (context) => SplashPage());
   }
@@ -79,4 +94,7 @@ class RouteName {
 
   //视频详情页
   static const videoPlayerPage = '/videoPlayerPage';
+
+  //弹幕视频详情页
+static const  videoPlayerPageWithDanmu = '/videoPlayerPageWithDanmu';
 }
