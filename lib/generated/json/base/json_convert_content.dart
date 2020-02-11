@@ -19,6 +19,8 @@ import 'package:xbilibili/entity/video_detail_entity.dart';
 import 'package:xbilibili/generated/json/video_detail_entity_helper.dart';
 import 'package:xbilibili/entity/live_url_entity.dart';
 import 'package:xbilibili/generated/json/live_url_entity_helper.dart';
+import 'package:xbilibili/entity/search_result_entity.dart';
+import 'package:xbilibili/generated/json/search_result_entity_helper.dart';
 import 'package:xbilibili/entity/live_entity.dart';
 import 'package:xbilibili/generated/json/live_entity_helper.dart';
 
@@ -150,7 +152,23 @@ class JsonConvert<T> {
 			return liveUrlEntityFromJson(data as LiveUrlEntity, json) as T;			case LiveUrlData:
 			return liveUrlDataFromJson(data as LiveUrlData, json) as T;			case LiveUrlDataQualityDescription:
 			return liveUrlDataQualityDescriptionFromJson(data as LiveUrlDataQualityDescription, json) as T;			case LiveUrlDataDurl:
-			return liveUrlDataDurlFromJson(data as LiveUrlDataDurl, json) as T;			case LiveEntity:
+			return liveUrlDataDurlFromJson(data as LiveUrlDataDurl, json) as T;			case SearchResultEntity:
+			return searchResultEntityFromJson(data as SearchResultEntity, json) as T;			case SearchResultData:
+			return searchResultDataFromJson(data as SearchResultData, json) as T;			case SearchResultDataNav:
+			return searchResultDataNavFromJson(data as SearchResultDataNav, json) as T;			case SearchResultDataItems:
+			return searchResultDataItemsFromJson(data as SearchResultDataItems, json) as T;			case SearchResultDataItem:
+			return searchResultDataItemFromJson(data as SearchResultDataItem, json) as T;			case SearchResultDataItemEpisode:
+			return searchResultDataItemEpisodeFromJson(data as SearchResultDataItemEpisode, json) as T;			case SearchResultDataItemWatchButton:
+			return searchResultDataItemWatchButtonFromJson(data as SearchResultDataItemWatchButton, json) as T;			case SearchResultDataItemFollowButton:
+			return searchResultDataItemFollowButtonFromJson(data as SearchResultDataItemFollowButton, json) as T;			case SearchResultDataItemFollowButtonTexts:
+			return searchResultDataItemFollowButtonTextsFromJson(data as SearchResultDataItemFollowButtonTexts, json) as T;			case SearchResultDataItemCheckMore:
+			return searchResultDataItemCheckMoreFromJson(data as SearchResultDataItemCheckMore, json) as T;			case SearchResultDataItemEpisodesNew:
+			return searchResultDataItemEpisodesNewFromJson(data as SearchResultDataItemEpisodesNew, json) as T;			case SearchResultDataItemOfficialVerify:
+			return searchResultDataItemOfficialVerifyFromJson(data as SearchResultDataItemOfficialVerify, json) as T;			case SearchResultDataItemVip:
+			return searchResultDataItemVipFromJson(data as SearchResultDataItemVip, json) as T;			case SearchResultDataItemVipLabel:
+			return searchResultDataItemVipLabelFromJson(data as SearchResultDataItemVipLabel, json) as T;			case SearchResultDataItemAvItem:
+			return searchResultDataItemAvItemFromJson(data as SearchResultDataItemAvItem, json) as T;			case SearchResultDataItemNewRecTag:
+			return searchResultDataItemNewRecTagFromJson(data as SearchResultDataItemNewRecTag, json) as T;			case LiveEntity:
 			return liveEntityFromJson(data as LiveEntity, json) as T;			case LiveData:
 			return liveDataFromJson(data as LiveData, json) as T;			case LiveDataBanner:
 			return liveDataBannerFromJson(data as LiveDataBanner, json) as T;			case LiveDataPartition:
@@ -297,7 +315,23 @@ class JsonConvert<T> {
 			return liveUrlEntityToJson(data as LiveUrlEntity);			case LiveUrlData:
 			return liveUrlDataToJson(data as LiveUrlData);			case LiveUrlDataQualityDescription:
 			return liveUrlDataQualityDescriptionToJson(data as LiveUrlDataQualityDescription);			case LiveUrlDataDurl:
-			return liveUrlDataDurlToJson(data as LiveUrlDataDurl);			case LiveEntity:
+			return liveUrlDataDurlToJson(data as LiveUrlDataDurl);			case SearchResultEntity:
+			return searchResultEntityToJson(data as SearchResultEntity);			case SearchResultData:
+			return searchResultDataToJson(data as SearchResultData);			case SearchResultDataNav:
+			return searchResultDataNavToJson(data as SearchResultDataNav);			case SearchResultDataItems:
+			return searchResultDataItemsToJson(data as SearchResultDataItems);			case SearchResultDataItem:
+			return searchResultDataItemToJson(data as SearchResultDataItem);			case SearchResultDataItemEpisode:
+			return searchResultDataItemEpisodeToJson(data as SearchResultDataItemEpisode);			case SearchResultDataItemWatchButton:
+			return searchResultDataItemWatchButtonToJson(data as SearchResultDataItemWatchButton);			case SearchResultDataItemFollowButton:
+			return searchResultDataItemFollowButtonToJson(data as SearchResultDataItemFollowButton);			case SearchResultDataItemFollowButtonTexts:
+			return searchResultDataItemFollowButtonTextsToJson(data as SearchResultDataItemFollowButtonTexts);			case SearchResultDataItemCheckMore:
+			return searchResultDataItemCheckMoreToJson(data as SearchResultDataItemCheckMore);			case SearchResultDataItemEpisodesNew:
+			return searchResultDataItemEpisodesNewToJson(data as SearchResultDataItemEpisodesNew);			case SearchResultDataItemOfficialVerify:
+			return searchResultDataItemOfficialVerifyToJson(data as SearchResultDataItemOfficialVerify);			case SearchResultDataItemVip:
+			return searchResultDataItemVipToJson(data as SearchResultDataItemVip);			case SearchResultDataItemVipLabel:
+			return searchResultDataItemVipLabelToJson(data as SearchResultDataItemVipLabel);			case SearchResultDataItemAvItem:
+			return searchResultDataItemAvItemToJson(data as SearchResultDataItemAvItem);			case SearchResultDataItemNewRecTag:
+			return searchResultDataItemNewRecTagToJson(data as SearchResultDataItemNewRecTag);			case LiveEntity:
 			return liveEntityToJson(data as LiveEntity);			case LiveData:
 			return liveDataToJson(data as LiveData);			case LiveDataBanner:
 			return liveDataBannerToJson(data as LiveDataBanner);			case LiveDataPartition:
@@ -444,7 +478,23 @@ class JsonConvert<T> {
 			return LiveUrlEntity().fromJson(json) as T;			case 'LiveUrlData':
 			return LiveUrlData().fromJson(json) as T;			case 'LiveUrlDataQualityDescription':
 			return LiveUrlDataQualityDescription().fromJson(json) as T;			case 'LiveUrlDataDurl':
-			return LiveUrlDataDurl().fromJson(json) as T;			case 'LiveEntity':
+			return LiveUrlDataDurl().fromJson(json) as T;			case 'SearchResultEntity':
+			return SearchResultEntity().fromJson(json) as T;			case 'SearchResultData':
+			return SearchResultData().fromJson(json) as T;			case 'SearchResultDataNav':
+			return SearchResultDataNav().fromJson(json) as T;			case 'SearchResultDataItems':
+			return SearchResultDataItems().fromJson(json) as T;			case 'SearchResultDataItem':
+			return SearchResultDataItem().fromJson(json) as T;			case 'SearchResultDataItemEpisode':
+			return SearchResultDataItemEpisode().fromJson(json) as T;			case 'SearchResultDataItemWatchButton':
+			return SearchResultDataItemWatchButton().fromJson(json) as T;			case 'SearchResultDataItemFollowButton':
+			return SearchResultDataItemFollowButton().fromJson(json) as T;			case 'SearchResultDataItemFollowButtonTexts':
+			return SearchResultDataItemFollowButtonTexts().fromJson(json) as T;			case 'SearchResultDataItemCheckMore':
+			return SearchResultDataItemCheckMore().fromJson(json) as T;			case 'SearchResultDataItemEpisodesNew':
+			return SearchResultDataItemEpisodesNew().fromJson(json) as T;			case 'SearchResultDataItemOfficialVerify':
+			return SearchResultDataItemOfficialVerify().fromJson(json) as T;			case 'SearchResultDataItemVip':
+			return SearchResultDataItemVip().fromJson(json) as T;			case 'SearchResultDataItemVipLabel':
+			return SearchResultDataItemVipLabel().fromJson(json) as T;			case 'SearchResultDataItemAvItem':
+			return SearchResultDataItemAvItem().fromJson(json) as T;			case 'SearchResultDataItemNewRecTag':
+			return SearchResultDataItemNewRecTag().fromJson(json) as T;			case 'LiveEntity':
 			return LiveEntity().fromJson(json) as T;			case 'LiveData':
 			return LiveData().fromJson(json) as T;			case 'LiveDataBanner':
 			return LiveDataBanner().fromJson(json) as T;			case 'LiveDataPartition':

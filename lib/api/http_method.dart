@@ -14,6 +14,7 @@ import 'package:xbilibili/entity/mall_list_model.dart';
 import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/entity/reply_entity.dart';
 import 'package:xbilibili/entity/search_hot_model.dart';
+import 'package:xbilibili/entity/search_result_entity.dart';
 import 'package:xbilibili/entity/video_detail_entity.dart';
 import 'package:xbilibili/entity/video_detail_v3_entity.dart';
 import 'package:xbilibili/entity/video_url_entity.dart';
@@ -301,7 +302,8 @@ class HttpMethod {
     }
   }
 
-  static Future<Map<String, String>> getVideoPlayUrlV3({@required String aid, @required String cid, int qn = 64}) async {
+  static Future<Map<String, String>> getVideoPlayUrlV3(
+      {@required String aid, @required String cid, int qn = 64}) async {
     try {
       var url = Url.getVideoPlayUrlV3;
       String appSecret = 'aHRmhWMLkdeMuILqORnYZocwMBpMEOdt';
@@ -335,6 +337,32 @@ class HttpMethod {
         }
 
         return null;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static Future<SearchResultEntity> search(
+      {@required String keyWord, @required int pn, String order = 'default'}) async {
+    try {
+      var url = Url.searchUrl;
+      var response = await dio.get(url, queryParameters: {
+        'appkey': '1d8b6e7d45233436',
+        'build': '5370000',
+        'pn': pn,
+        'ps': '15',
+        'keyword': keyWord,
+        'order': order,
+      });
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+
+        var searchResultEntity = JsonConvert.fromJsonAsT<SearchResultEntity>(responseStr);
+        return searchResultEntity;
       } else {
         throw Exception('接口异常');
       }

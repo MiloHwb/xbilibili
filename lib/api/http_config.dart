@@ -38,4 +38,7 @@ class Url {
 
   //获取弹幕
   static const getDanmukuUrl = 'http://106.12.218.227/api/bilibili/getDanmaku.php';
+
+  //搜索
+  static const searchUrl = 'https://app.bilibili.com/x/v2/search';
 }
