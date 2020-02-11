@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:xbilibili/entity/hot_entity.dart';
+import 'package:xbilibili/route/routes.dart';
 
 /*
  * @ 创建者       milohuang
@@ -17,7 +18,8 @@ class AvHot extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //todo 跳转播放列表
+        //跳转播放列表
+        Navigator.pushNamed(context, RouteName.videoPlayerPageWithDanmu, arguments: data.param);
       },
       child: Container(
         height: 125,
