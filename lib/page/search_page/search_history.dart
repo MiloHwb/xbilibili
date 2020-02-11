@@ -32,20 +32,46 @@ class SearchHistory extends StatelessWidget {
             return Container(
               alignment: Alignment.topLeft,
               margin: EdgeInsets.symmetric(horizontal: 10),
-              child: Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: value.historyList.map((value) {
-                  return FlatButton(
-                    onPressed: () {
-                      // 搜索
-                      Provider.of<SearchPageProvider>(context,listen: false).insertHistoryData(value);
-                      Navigator.of(context).pushNamed(RouteName.searchResultPage,arguments: value);
-                    },
-                    color: Colors.grey[200],
-                    child: Text(value),
-                  );
-                }).toList(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: value.historyList.map((value) {
+                      return FlatButton(
+                        onPressed: () {
+                          // 搜索
+                          Navigator.of(context)
+                              .pushNamed(RouteName.searchResultPage, arguments: value)
+                              .then((_) {
+                            Provider.of<SearchPageProvider>(context, listen: false)
+                                .insertHistoryData(value);
+                          });
+                        },
+                        color: Colors.grey[200],
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  value.historyList.length == 0
+                      ? Container()
+                      : Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(top: 10),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(3),
+                            onTap: () {
+                              Provider.of<SearchPageProvider>(context, listen: false)
+                                  .removeHistory();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              child: Text('清空历史记录'),
+                            ),
+                          ),
+                        ),
+                ],
               ),
             );
           }),

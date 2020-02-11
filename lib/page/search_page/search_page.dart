@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:xbilibili/providers/search_page_provider.dart';
 
 import 'everyone_search.dart';
 import 'search_bar.dart';
@@ -12,6 +14,7 @@ import 'search_history.dart';
 class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Provider.of<SearchPageProvider>(context, listen: false).searchText = null;
     return Scaffold(
       appBar: SearchBar(),
       body: ListView(

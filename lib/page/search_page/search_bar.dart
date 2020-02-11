@@ -36,20 +36,43 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
             Expanded(
               child: Container(
                 padding: EdgeInsets.only(left: 5),
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                    isDense: true,
-                    hintText: '搜索',
-                    border: InputBorder.none,
-                  ),
-                  autofocus: true,
-                  maxLines: 1,
-                  textInputAction: TextInputAction.search,
-                  onSubmitted: (text) {
-                    // 搜索
-                    Provider.of<SearchPageProvider>(context, listen: false).insertHistoryData(text);
-                    Navigator.of(context).pushNamed(RouteName.searchResultPage, arguments: text);
+                child: Consumer<SearchPageProvider>(
+                  builder: (context, value, child) {
+                    if (value.searchText != null) {
+                      _controller.text = value.searchText;
+                      _controller.selection = TextSelection.fromPosition(TextPosition(
+                        affinity: TextAffinity.downstream,
+                        offset: value.searchText.length,
+                      ));
+                    }
+
+                    return TextField(
+                      controller: _controller,
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        hintText: '搜索',
+                        border: InputBorder.none,
+                        fillColor: Colors.white,
+                      ),
+                      autofocus: true,
+                      maxLines: 1,
+                      textInputAction: TextInputAction.search,
+                      onSubmitted: (text) {
+                        if (text == '') {
+                          return;
+                        }
+                        // 搜索
+                        Navigator.of(context)
+                            .pushNamed(RouteName.searchResultPage, arguments: text)
+                            .then((_) {
+                          Provider.of<SearchPageProvider>(context, listen: false)
+                              .insertHistoryData(text);
+                        });
+                      },
+                    );
                   },
                 ),
               ),

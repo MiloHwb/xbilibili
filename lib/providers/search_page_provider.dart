@@ -8,6 +8,7 @@ class SearchPageProvider with ChangeNotifier {
   static const String hotKey = "hotSearchList";
   List<ListModel> list = [];
   List historyList = [];
+  String searchText;
 
   setSearchHotList(List<ListModel> list) {
     this.list = list;
@@ -16,6 +17,7 @@ class SearchPageProvider with ChangeNotifier {
 
   //插入一条数据
   insertHistoryData(String keyWord) async {
+    this.searchText = keyWord;
     var source = await Storage.getString(hotKey);
     if (source == null) {
       historyList = [];
@@ -52,7 +54,12 @@ class SearchPageProvider with ChangeNotifier {
   //删除搜索历史
   removeHistory() async {
     await Storage.remove(hotKey);
-    this.historyList = json.decode(await Storage.getString(hotKey));
+    var source = await Storage.getString(hotKey);
+    if (source == null) {
+      historyList = [];
+    } else {
+      historyList = json.decode(source);
+    }
     notifyListeners();
   }
 }
