@@ -30,7 +30,12 @@ class Url {
   static const videoDetailUrl = 'https://app.bilibili.com/x/v2/view';
 
   //获取视频播放url
-  static const getVideoPlayUrl = 'https://app.bilibili.com/playurl';
+  static const getVideoPlayUrlV2 = 'https://app.bilibili.com/playurl';
+  static const getVideoPlayUrlV3 = 'https://app.bilibili.com/x/playurl';
 
+  //获取视频回复
   static const getReplyUrl = 'https://api.bilibili.com/x/v2/reply/main';
+
+  //获取弹幕
+  static const getDanmukuUrl = 'http://106.12.218.227/api/bilibili/getDanmaku.php';
 }

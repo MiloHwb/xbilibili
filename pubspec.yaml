@@ -39,6 +39,8 @@ dependencies:
   permission_handler: ^4.2.0+hotfix.3
   image_gallery_saver: ^1.2.2
   share: ^0.6.3+5
+  xml: ^3.5.0
+  event_bus: ^1.1.1
 
 dev_dependencies:
   flutter_test:

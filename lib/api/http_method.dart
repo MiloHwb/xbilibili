@@ -15,6 +15,7 @@ import 'package:xbilibili/entity/recommend_entity.dart';
 import 'package:xbilibili/entity/reply_entity.dart';
 import 'package:xbilibili/entity/search_hot_model.dart';
 import 'package:xbilibili/entity/video_detail_entity.dart';
+import 'package:xbilibili/entity/video_detail_v3_entity.dart';
 import 'package:xbilibili/entity/video_url_entity.dart';
 import 'package:xbilibili/generated/json/base/json_convert_content.dart';
 
@@ -224,9 +225,9 @@ class HttpMethod {
     }
   }
 
-  static Future<VideoUrlEntity> getVideoPlayUrl({@required String cid, int qn = 64}) async {
+  static Future<VideoUrlEntity> getVideoPlayUrlV2({@required String cid, int qn = 64}) async {
     try {
-      var url = Url.getVideoPlayUrl;
+      var url = Url.getVideoPlayUrlV2;
       String appSecret = 'aHRmhWMLkdeMuILqORnYZocwMBpMEOdt';
 
       String data =
@@ -266,6 +267,74 @@ class HttpMethod {
 
         var replyEntity = JsonConvert.fromJsonAsT<ReplyEntity>(responseStr);
         return replyEntity;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static getDanmukuUrl({@required String url}) async {
+    try {
+      var response = await dio.get(
+        Url.getDanmukuUrl,
+        queryParameters: {
+          'url': url,
+        },
+        options: Options(
+          contentType: "text/xml",
+          sendTimeout: 5000,
+          receiveTimeout: 5000,
+        ),
+      );
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+        return responseStr;
+      } else {
+        throw Exception('接口异常');
+      }
+    } catch (e) {
+      print(e);
+      throw e;
+    }
+  }
+
+  static Future<Map<String, String>> getVideoPlayUrlV3({@required String aid, @required String cid, int qn = 64}) async {
+    try {
+      var url = Url.getVideoPlayUrlV3;
+      String appSecret = 'aHRmhWMLkdeMuILqORnYZocwMBpMEOdt';
+      int ts = DateTime.now().millisecondsSinceEpoch;
+
+      String data =
+          "actionkey=appkey&aid=$aid&appkey=iVGUTjsxvpLeuDCf&build=5490400&buvid=XZF9F55FE566C57599024A397F5F160E74DBE&cid=$cid&device=android&expire=0&fnval=16&fnver=0&force_host=0&fourk=0&from_spmid=tm.recommend.0.0&mid=0&mobi_app=android&otype=json&platform=android&qn=$qn&spmid=main.ugc-video-detail.0.0&ts=$ts";
+      String sign = md5.convert(utf8.encode(data + appSecret)).toString();
+      url = url + '?$data&sign=$sign';
+      print('getVideoPlayUrlV3 = ' + url);
+      var response = await dio.get(url);
+      if (response.statusCode == 200) {
+        var responseStr = response.data;
+        var videoDetailV3Entity = JsonConvert.fromJsonAsT<VideoDetailV3Entity>(responseStr);
+        if (videoDetailV3Entity != null && videoDetailV3Entity.data != null) {
+          if (videoDetailV3Entity.data.dash != null) {
+            String vl;
+            for (var jd in videoDetailV3Entity.data.dash.video) {
+              if (jd.id == qn) {
+                vl = jd.baseUrl;
+                break;
+              }
+            }
+            vl = vl ?? videoDetailV3Entity.data.dash.video[0].baseUrl;
+            String al = videoDetailV3Entity.data.dash.audio[0].baseUrl;
+            return {"video_url": vl, "audio_url": al};
+          } else if (videoDetailV3Entity.data.durl != null) {
+            String vl = videoDetailV3Entity.data.durl[0].url;
+            return {"video_url": vl, "audio_url": null};
+          }
+        }
+
+        return null;
       } else {
         throw Exception('接口异常');
       }

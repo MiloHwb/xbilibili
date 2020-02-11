@@ -27,7 +27,7 @@ class VideoPlayerProvider with ChangeNotifier {
       return;
     }
     VideoUrlEntity videoUrlEntity =
-        await HttpMethod.getVideoPlayUrl(cid: videoDetail.data.pages[0].cid.toString());
+        await HttpMethod.getVideoPlayUrlV2(cid: videoDetail.data.pages[0].cid.toString());
     if (videoUrlEntity == null ||
         videoUrlEntity.durl == null ||
         videoUrlEntity.durl[0] == null ||
