@@ -7,11 +7,13 @@ import 'package:xbilibili/page/live_player_page/live_player_page.dart';
 import 'package:xbilibili/page/login_page.dart';
 import 'package:xbilibili/page/main_page/main_page.dart';
 import 'package:xbilibili/page/search_page/search_page.dart';
+import 'package:xbilibili/page/search_page/search_result_page.dart';
 import 'package:xbilibili/page/setting_page.dart';
 import 'package:xbilibili/page/splash_page.dart';
 import 'package:xbilibili/page/video_player_page/video_player_page.dart';
 import 'package:xbilibili/page/video_player_page/video_player_page_with_danmu.dart';
 import 'package:xbilibili/providers/live_player_page_provider.dart';
+import 'package:xbilibili/providers/search_result_page_provider.dart';
 import 'package:xbilibili/providers/video_player_provider.dart';
 import 'package:xbilibili/providers/video_player_with_danmu_provider.dart';
 
@@ -65,6 +67,17 @@ Route<PageRoute> generateRoutes(RouteSettings settings) {
         );
       }
       return null;
+    case RouteName.searchResultPage:
+      if (settings.arguments is String) {
+        return MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+            create: (_) => SearchResultPageProvider(searchText: settings.arguments),
+            lazy: false,
+            child: SearchResultPage(),
+          ),
+        );
+      }
+      return null;
     default:
       return MaterialPageRoute(builder: (context) => SplashPage());
   }
@@ -96,5 +109,8 @@ class RouteName {
   static const videoPlayerPage = '/videoPlayerPage';
 
   //弹幕视频详情页
-static const  videoPlayerPageWithDanmu = '/videoPlayerPageWithDanmu';
+  static const videoPlayerPageWithDanmu = '/videoPlayerPageWithDanmu';
+
+  //搜索结果页
+  static const searchResultPage = '/searchResultPage';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/api/http_method.dart';
 import 'package:xbilibili/providers/search_page_provider.dart';
+import 'package:xbilibili/route/routes.dart';
 
 /*
  * @ 创建者       milo
@@ -30,18 +31,24 @@ class EveryoneSearch extends StatelessWidget {
             ),
           ),
           Consumer<SearchPageProvider>(builder: (context, value, child) {
-            return Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: value.list.map((value) {
-                return FlatButton(
-                  onPressed: () {
-                    //todo 搜索
-                  },
-                  color: Colors.grey[200],
-                  child: Text(value.keyword),
-                );
-              }).toList(),
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              alignment: Alignment.topLeft,
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: value.list.map((value) {
+                  return FlatButton(
+                    onPressed: () {
+                      // 搜索
+                      Provider.of<SearchPageProvider>(context,listen: false).insertHistoryData(value.keyword);
+                      Navigator.of(context).pushNamed(RouteName.searchResultPage,arguments: value.keyword);
+                    },
+                    color: Colors.grey[200],
+                    child: Text(value.keyword),
+                  );
+                }).toList(),
+              ),
             );
           }),
         ],

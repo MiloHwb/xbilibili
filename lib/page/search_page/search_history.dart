@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xbilibili/providers/search_page_provider.dart';
+import 'package:xbilibili/route/routes.dart';
 
 /*
  * @ 创建者       milo
@@ -28,18 +29,24 @@ class SearchHistory extends StatelessWidget {
             ),
           ),
           Consumer<SearchPageProvider>(builder: (context, value, child) {
-            return Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: value.historyList.map((value) {
-                return FlatButton(
-                  onPressed: () {
-                    //todo 搜索
-                  },
-                  color: Colors.grey[200],
-                  child: Text(value),
-                );
-              }).toList(),
+            return Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: value.historyList.map((value) {
+                  return FlatButton(
+                    onPressed: () {
+                      // 搜索
+                      Provider.of<SearchPageProvider>(context,listen: false).insertHistoryData(value);
+                      Navigator.of(context).pushNamed(RouteName.searchResultPage,arguments: value);
+                    },
+                    color: Colors.grey[200],
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
             );
           }),
         ],

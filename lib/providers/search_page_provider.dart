@@ -7,7 +7,7 @@ import 'package:xbilibili/utils/storage.dart';
 class SearchPageProvider with ChangeNotifier {
   static const String hotKey = "hotSearchList";
   List<ListModel> list = [];
-  List<String> historyList = [];
+  List historyList = [];
 
   setSearchHotList(List<ListModel> list) {
     this.list = list;
@@ -16,8 +16,12 @@ class SearchPageProvider with ChangeNotifier {
 
   //插入一条数据
   insertHistoryData(String keyWord) async {
-    print('插入一条数据');
-    List historyList = json.decode(await Storage.getString(hotKey));
+    var source = await Storage.getString(hotKey);
+    if (source == null) {
+      historyList = [];
+    } else {
+      historyList = json.decode(source);
+    }
     bool hasData = historyList.any((v) => v == keyWord);
     if (!hasData) {
       historyList.insert(0, keyWord);
@@ -30,13 +34,18 @@ class SearchPageProvider with ChangeNotifier {
       historyList.removeRange(8, historyList.length);
     }
 
-    await Storage.setString(hotKey, json.encode(historyList));
-    this.historyList = json.decode(await Storage.getString(hotKey));
+    var string = json.encode(historyList);
+
+    await Storage.setString(hotKey, string);
+    this.historyList = json.decode(string);
     notifyListeners();
   }
 
   getHistoryData() async {
-    this.historyList = json.decode(await Storage.getString(hotKey));
+    var source = await Storage.getString(hotKey);
+    if (source != null) {
+      this.historyList = json.decode(source);
+    }
     notifyListeners();
   }
 

@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Storage {
   static Future<void> setString(key, value) async {
     var sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setStringList(key, value);
+    sharedPreferences.setString(key, value);
   }
 
   static Future<String> getString(key) async {
