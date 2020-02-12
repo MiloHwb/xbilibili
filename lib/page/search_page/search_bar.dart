@@ -10,6 +10,9 @@ import 'package:xbilibili/route/routes.dart';
  */
 class SearchBar extends StatelessWidget with PreferredSizeWidget {
   final TextEditingController _controller = TextEditingController();
+  final ValueChanged<String> onSubmitted;
+
+  SearchBar({Key key, @required this.onSubmitted}) : super(key: key);
 
   @override
   Size get preferredSize => Size.fromHeight(46);
@@ -60,18 +63,7 @@ class SearchBar extends StatelessWidget with PreferredSizeWidget {
                       autofocus: true,
                       maxLines: 1,
                       textInputAction: TextInputAction.search,
-                      onSubmitted: (text) {
-                        if (text == '') {
-                          return;
-                        }
-                        // 搜索
-                        Navigator.of(context)
-                            .pushNamed(RouteName.searchResultPage, arguments: text)
-                            .then((_) {
-                          Provider.of<SearchPageProvider>(context, listen: false)
-                              .insertHistoryData(text);
-                        });
-                      },
+                      onSubmitted: onSubmitted,
                     );
                   },
                 ),

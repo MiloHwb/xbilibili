@@ -346,8 +346,9 @@ class HttpMethod {
     }
   }
 
-  static Future<SearchResultEntity> search(
+  static Future<List<SearchResultDataItem>> search(
       {@required String keyWord, @required int pn, String order = 'default'}) async {
+    List<SearchResultDataItem> searchResultList = List();
     try {
       var url = Url.searchUrl;
       var response = await dio.get(url, queryParameters: {
@@ -362,13 +363,29 @@ class HttpMethod {
         var responseStr = response.data;
 
         var searchResultEntity = JsonConvert.fromJsonAsT<SearchResultEntity>(responseStr);
-        return searchResultEntity;
+        if (searchResultEntity != null) {
+          for (var item in searchResultEntity.data.item) {
+            if (item.linktype == 'video') {
+              var data = SearchResultDataItem();
+             data.play=item.play;
+             data.danmaku=item.danmaku;
+             data.title=item.title;
+             data.duration=item.duration;
+             data.cover='http:'+item.cover;
+             data.author=item.author;
+             data.desc=item.desc;
+             data.param=item.param;
+              searchResultList.add(data);
+            }
+          }
+        }
       } else {
         throw Exception('接口异常');
       }
+      return searchResultList;
     } catch (e) {
       print(e);
-      throw e;
+      return searchResultList;
     }
   }
 

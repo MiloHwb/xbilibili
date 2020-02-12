@@ -42,12 +42,10 @@ class SearchHistory extends StatelessWidget {
                       return FlatButton(
                         onPressed: () {
                           // 搜索
+                          Provider.of<SearchPageProvider>(context, listen: false)
+                              .insertHistoryData(value);
                           Navigator.of(context)
-                              .pushNamed(RouteName.searchResultPage, arguments: value)
-                              .then((_) {
-                            Provider.of<SearchPageProvider>(context, listen: false)
-                                .insertHistoryData(value);
-                          });
+                              .pushNamed(RouteName.searchResultPage, arguments: value);
                         },
                         color: Colors.grey[200],
                         child: Text(value),

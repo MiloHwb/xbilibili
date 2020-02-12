@@ -41,12 +41,10 @@ class EveryoneSearch extends StatelessWidget {
                   return FlatButton(
                     onPressed: () {
                       // 搜索
+                      Provider.of<SearchPageProvider>(context, listen: false)
+                          .insertHistoryData(value.keyword);
                       Navigator.of(context)
-                          .pushNamed(RouteName.searchResultPage, arguments: value.keyword)
-                          .then((_) {
-                        Provider.of<SearchPageProvider>(context, listen: false)
-                            .insertHistoryData(value.keyword);
-                      });
+                          .pushNamed(RouteName.searchResultPage, arguments: value.keyword);
                     },
                     color: Colors.grey[200],
                     child: Text(value.keyword),
